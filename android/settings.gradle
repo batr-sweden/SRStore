@@ -1,0 +1,3 @@
+rootProject.name = 'SRStores'
+
+include ':app'
