@@ -1,0 +1,3 @@
+/*
+ Images and others assets related things are kept here
+*/
