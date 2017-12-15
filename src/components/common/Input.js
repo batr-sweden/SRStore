@@ -1,23 +1,21 @@
 import React from 'react';
 import { TextInput, View } from 'react-native';
 
-const Input = ({ placeholderTextColor, secureTextEntry,componentContainerStyle,componentInputStyle, value, onChangeText, placeholder, returnKeyType, keyboardType }) => {
+const Input = (props) => {
 const { containerStyle, inputStyle } = styles;
-// <Text style={labelStyle}>
-// {label}
-// </Text>
+
   return (
-    <View style={[containerStyle, componentContainerStyle]}>
+    <View style={[containerStyle, props.componentContainerStyle]}>
     <TextInput
-    placeholderTextColor={placeholderTextColor}
-    secureTextEntry={secureTextEntry}
-    placeholder={placeholder}
+    placeholderTextColor={props.placeholderTextColor}
+    secureTextEntry={props.secureTextEntry}
+    placeholder={props.placeholder}
     autoCorrect={false}
-    style={[inputStyle, componentInputStyle]}
+    style={[inputStyle, props.componentInputStyle]}
     value={value}
-    onChangeText={onChangeText}
-    returnKeyType={returnKeyType}
-    keyboardType={keyboardType}
+    onChangeText={props.onChangeText}
+    returnKeyType={props.returnKeyType}
+    keyboardType={props.keyboardType}
     />
     </View>
   );

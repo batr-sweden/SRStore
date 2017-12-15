@@ -1,57 +1,40 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+  Initiate Redux,
+  Firebase,
+  Auto navigation for logged in users
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
+import { config } from './src/services';
+import reducers from './src/redux/reducers';
+import Index from './src/index';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 export default class App extends Component<{}> {
+
+  componentWillMount() {
+    // const config = {
+    //   apiKey: 'AIzaSyB9tT1Q_jYiqba_6M8F8BRERyR977SAD94',
+    //   authDomain: 'batr-9978b.firebaseapp.com',
+    //   databaseURL: 'https://batr-9978b.firebaseio.com',
+    //   projectId: 'batr-9978b',
+    //   storageBucket: 'batr-9978b.appspot.com',
+    //   messagingSenderId: '716778603456'
+    // };
+
+    firebase.initializeApp(config);
+  } //End componentWillMount
+
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+      <Provider store={store}>
+          <Index />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

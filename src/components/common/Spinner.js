@@ -1,11 +1,14 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import { secondaryColor } from '../../styles';
+import { secondaryColor } from '../../config';
 
 const Spinner = ({ size }) => {
   return (
     <View style={styles.spinnerStyle}>
-      <ActivityIndicator color={secondaryColor} size={size || 'large'} />
+      <ActivityIndicator
+        size={size || 'large'}
+        color={secondaryColor}
+      />
     </View>
   );
 };

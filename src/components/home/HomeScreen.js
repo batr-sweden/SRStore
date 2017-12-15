@@ -7,7 +7,7 @@ import { btnFetch, signOutUser } from '../../actions';
 import { Header, RewardButton, Spinner } from '../common';
 import homeStyle from './styles';
 
-class landingScreen extends Component {
+class HomeScreen extends Component {
 //Fetch button from firebase
  componentWillMount() {
    this.props.btnFetch();
@@ -88,4 +88,4 @@ const mapStateToProps = ({ btns }) => {
 export default connect(mapStateToProps, {
   btnFetch,
   signOutUser
-})(landingScreen);
+})(HomeScreen);
