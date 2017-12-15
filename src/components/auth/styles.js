@@ -1,8 +1,4 @@
 import {
-//   primaryColor,
-//   secondaryColor,
-// } from '../../styles';
-
 callToActionColor,
 primaryColor,
 secondaryColor,
@@ -19,8 +15,6 @@ const authStyles = {
   parentView: {
     flex: 3,
     alignItems: 'center',
-    marginLeft: 20,
-    marginRight: 20,
   },
   cardSectionStyle: {
     backgroundColor: secondaryColor,
@@ -40,9 +34,6 @@ const authStyles = {
     borderColor: primaryColor,
     alignSelf: "stretch"
   },
-  errorTextStyle: {
-    color: 'red'
-  },
   containerStyle: {
     flex: 1,
     flexDirection: 'column',
@@ -51,7 +42,8 @@ const authStyles = {
   },
   bottomButton: {
     container: {
-      marginTop: -10
+      marginTop: -10,
+      flexDirection: 'row',
     },
     message: {
       color: secondaryColor,
@@ -64,9 +56,9 @@ const authStyles = {
     }
   },
   cardStyle: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#fff',
     borderWidth: 0,
-    marginBottom: 50
+    marginBottom: 50,
   },
   errorTextStyle: {
     fontSize: 10,
@@ -76,7 +68,8 @@ const authStyles = {
   },
   headerMsg: {
     container: {
-      backgroundColor: '#e0e0e0'
+      backgroundColor: '#e0e0e0',
+      flexDirection: 'row',
     },
     message: {
       fontSize: 20,
@@ -90,12 +83,12 @@ const authStyles = {
   },
   infoDiv: {
     container: {
-      flexDirection: 'column',
+      flexDirection: 'row',
       alignContent: 'flex-start',
     },
     message: {
       paddingTop: 10,
-      marginBottom: -5,
+      marginBottom: 5,
       paddingLeft: 10,
       letterSpacing: 0.5,
       fontWeight: 'bold'
@@ -125,8 +118,8 @@ const authStyles = {
       borderRadius: 5,
       marginRight: 15,
       marginLeft: 15,
-      marginTop: -10
     },
+  },
 };
 
 export { authStyles };

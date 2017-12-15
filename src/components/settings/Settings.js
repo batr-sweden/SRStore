@@ -32,7 +32,7 @@ class Settings extends Component {
               text='Ändra inställningar'
             />
           </View>
-          <Dash dashColor={primaryColor} style={{ width: null, height: 1, }} />
+          <Dash dashColor={primaryColor} dashThickness={1} dashLength={2} />
         </ScrollView>
 
         <AppButton
@@ -51,7 +51,7 @@ const Section = ({ text }) => {
 
   return (
     <View>
-      <Dash dashColor={primaryColor} style={{ width: null, height: 1, }} />
+      <Dash dashColor={primaryColor} dashThickness={1} dashLength={2} />
         <View style={sectionStyle.textContainer}>
           <AppButton
             text={text}

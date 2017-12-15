@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser, formChanges } from '../../actions';
 import { Spinner, Input, Button, CardSection } from '../common';
 import { authStyles } from './styles';
-import { inputColorSignUp, boxShadow } from '../../styles';
+import { boxShadow } from '../../styles';
+import { inputColorSignUp } from '../../config';
 
 class SignInForm extends Component {
 
@@ -76,7 +77,8 @@ class SignInForm extends Component {
       </View>
       <Text
         onPress={this.onChangeForm.bind(this)}
-        style={authStyles.textChangeForm}>
+        style={authStyles.textChangeForm}
+      >
           Create an Account
       </Text>
       <Text style={authStyles.errorTextStyle}>

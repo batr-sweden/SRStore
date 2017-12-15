@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'react-native-elements';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Input } from '../common';
-import { primaryColor, searchText } from '../../styles';
+import { primaryColor, searchText } from '../../config';
 
 // Make a component
 const Header = ({

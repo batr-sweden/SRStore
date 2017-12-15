@@ -4,9 +4,11 @@ import {
   KeyboardAvoidingView,
   LayoutAnimation,
   View,
-  Text } from 'react-native';
+  Text,
+  StatusBar } from 'react-native';
 import SignInForm from './SignInForm';
-import { primaryColor, textColorSignIn } from '../../styles';
+import SignUp from './SignUp';
+import { primaryColor, textColorSignIn } from '../../config';
 
 //ANIMATION FOR DIFFERENT VIEW SIGNUP / SIGNIN
 const CustomLayoutSpring = {
@@ -31,14 +33,18 @@ componentWillUpdate() {
 // RENDERS SIGNUP OR SIGNIN
 renderDisplay() {
   if (this.props.signUp) {
-    // return <SignUpForm />;
+    return <SignUp />;
   }
   return <SignInForm />;
 }
     render() {
         return (
           <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-            <View style={{ flex: 1, backgroundColor: primaryColor }}>
+            <View style={{ flex: 1, paddingLeft: 20,
+            paddingRight: 20, backgroundColor: primaryColor }}>
+            <StatusBar
+              barStyle="light-content"
+            />
               <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ color: textColorSignIn, fontWeight: '100', fontSize: 55 }}>
                 BATHER

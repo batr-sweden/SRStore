@@ -13,6 +13,7 @@ import { config } from './src/services';
 import reducers from './src/redux/reducers';
 import Index from './src/index';
 
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
 export default class App extends Component<{}> {
 
@@ -30,7 +31,6 @@ export default class App extends Component<{}> {
   } //End componentWillMount
 
   render() {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
           <Index />

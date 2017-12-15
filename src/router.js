@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'react-native-elements';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import { LoginScreen, SignUp, HomeScreen, Settings } from './components'
+import { LoginScreen, SignUp, HomeScreen, Settings } from './components';
 import { primaryColor, secondaryColor } from '../src/config';
 
 export const NotAuthenticated = StackNavigator({

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, FlatList, StatusBar } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { btnFetch, signOutUser } from '../../actions';
+import { btnFetch } from '../../redux/actions';
 import { Header, RewardButton, Spinner } from '../common';
 import homeStyle from './styles';
 
@@ -52,9 +52,10 @@ class HomeScreen extends Component {
      <View style={{ flex: 1, backgroundColor: 'transparent' }}>
       <StatusBar barStyle="light-content" />
       <Header
-      componentInputContainerStyle={{ display: 'flex' }}
-      componentSortStyle={{ display: 'flex' }}
-      componentViewStyle={{ height: 80 }} />
+        componentInputContainerStyle={{ display: 'flex' }}
+        componentSortStyle={{ display: 'flex' }}
+        componentViewStyle={{ height: 80 }}
+      />
       <View style={{ flex: 1, justifyContent: 'center' }}>
         { this._renderSpinner() }
       </View>
@@ -66,7 +67,7 @@ class HomeScreen extends Component {
           color='#449faa'
           containerStyle={homeStyle.iconStyle}
           iconStyle={{ color: '#fff' }}
-          onPress={this.signOut.bind(this)}
+          // onPress={{}}
           size={30}
         />
       </View>
@@ -87,5 +88,4 @@ const mapStateToProps = ({ btns }) => {
 
 export default connect(mapStateToProps, {
   btnFetch,
-  signOutUser
 })(HomeScreen);

@@ -1,8 +1,8 @@
 //Import libraries for Component
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import { boxShadow, secondaryColor } from '../../styles';
-
+import { boxShadow } from '../../styles';
+import { secondaryColor } from '../../config';
 // Create component
 const Button = ({
   onPress,

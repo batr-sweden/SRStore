@@ -10,7 +10,8 @@ import {
   LOGIN_USER_START,
   PASSWORD_CHECK,
   ANNONIMOUS_ACTION,
-   USER_SIGN_OUT
+  USER_SIGN_OUT,
+  SIGNIN_SIGNUP
  } from '../actions/types';
 
  const INITIAL_STATE = {
@@ -51,6 +52,9 @@ export default (state = INITIAL_STATE, action) => {
     case PASSWORD_CHECK:
       return {
         ...state, error: action.payload, password: '', rePassword: '', loading: false
+      };
+    case SIGNIN_SIGNUP:
+      return { ...state, ...INITIAL_STATE, signUp: action.payload
       };
     case ANNONIMOUS_ACTION:
       return { ...state, ...INITIAL_STATE };

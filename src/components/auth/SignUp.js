@@ -8,12 +8,18 @@ import {
   passwordCheck,
   phoneChanged,
   contactChange,
-  storeNameChange
+  storeNameChange,
+  formChanges
 } from '../../redux/actions';
-import { AppButton, Card, CardSection, Input, Logo, Spinner } from '../common';
+import { AppButton, Card, CardSection, Input, Spinner } from '../common';
 import { authStyles } from './styles';
 
 class SignUp extends Component {
+
+  onChangeForm() {
+    this.props.formChanges(false);
+  }
+
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -63,20 +69,10 @@ class SignUp extends Component {
       />
     );
   }
-
   render() {
     return (
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-      <View style={authStyles.containerStyle} >
-        <StatusBar
-          barStyle="light-content"
-        />
+      <View style={{ flex: 10 }}>
         <Card style={authStyles.cardStyle}>
-          <Logo
-            header="Batr"
-            headerMini="Business"
-          />
-
           <Card style={authStyles.sectionStyle}>
             <CardSection style={authStyles.headerMsg.container}>
               <Text style={authStyles.headerMsg.message}>
@@ -158,7 +154,7 @@ class SignUp extends Component {
               {this.props.error}
             </Text>
 
-            <CardSection>
+            <CardSection style={authStyles.bottomButton.container}>
               {this.renderButton()}
             </CardSection>
 
@@ -170,7 +166,7 @@ class SignUp extends Component {
                 componentButtonStyle={authStyles.bottomButton.button}
               />
               <AppButton
-                onPress={this.navigateToPage.bind(this)}
+                onPress={this.onChangeForm.bind(this)}
                 text="Login"
                 componentTextStyle={authStyles.bottomButton.message}
                 componentButtonStyle={authStyles.bottomButton.button}
@@ -178,8 +174,7 @@ class SignUp extends Component {
             </CardSection>
           </Card>
         </Card>
-      </View>
-      </KeyboardAvoidingView>
+        </View>
     );
   }
 }
@@ -199,5 +194,6 @@ export default connect(mapStateToProps, {
   passwordCheck,
   contactChange,
   phoneChanged,
-  storeNameChange
+  storeNameChange,
+  formChanges
 })(SignUp);

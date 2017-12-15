@@ -11,12 +11,20 @@ import {
   LOGIN_USER_START,
   PASSWORD_CHECK,
   ANNONIMOUS_ACTION,
-  USER_SIGN_OUT
+  USER_SIGN_OUT,
+  SIGNIN_SIGNUP
   } from './types';
 
 export const contactChange = (text) => {
   return {
     type: CONTACT_CHANGED,
+    payload: text
+  };
+};
+
+export const formChanges = (text) => {
+  return {
+    type: SIGNIN_SIGNUP,
     payload: text
   };
 };
