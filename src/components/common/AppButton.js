@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     fontFamily: textFontFamily,
     fontSize: 22,
     letterSpacing: 2,
-    //fontWeight: '200',
     paddingTop: 10,
     paddingBottom: 10
   },

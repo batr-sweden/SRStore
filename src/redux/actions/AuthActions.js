@@ -10,15 +10,16 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER_START,
   PASSWORD_CHECK,
-  ANNONIMOUS_ACTION
+  ANNONIMOUS_ACTION,
+  USER_SIGN_OUT
   } from './types';
 
-export const pageNav = () => {
+export const contactChange = (text) => {
   return {
-    type: ANNONIMOUS_ACTION
+    type: CONTACT_CHANGED,
+    payload: text
   };
 };
-
 
 export const emailChanged = (text) => {
   return {
@@ -27,17 +28,9 @@ export const emailChanged = (text) => {
   };
 };
 
-export const storeNameChange = (text) => {
+export const pageNav = () => {
   return {
-    type: STORENAME_CHANGED,
-    payload: text
-  };
-};
-
-export const contactChange = (text) => {
-  return {
-    type: CONTACT_CHANGED,
-    payload: text
+    type: ANNONIMOUS_ACTION
   };
 };
 
@@ -58,6 +51,24 @@ export const passwordChanged = (text) => {
 export const rePasswordChanged = (text) => {
   return {
     type: RE_PASSWORD_CHANGED,
+    payload: text
+  };
+};
+
+export const signOutUser = () => {
+  return (dispatch) => {
+    firebase.auth().signOut()
+      .then(() => {
+        dispatch({
+          type: USER_SIGN_OUT
+        });
+      });
+  };
+};
+
+export const storeNameChange = (text) => {
+  return {
+    type: STORENAME_CHANGED,
     payload: text
   };
 };

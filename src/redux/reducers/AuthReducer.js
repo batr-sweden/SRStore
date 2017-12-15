@@ -10,6 +10,7 @@ import {
   LOGIN_USER_START,
   PASSWORD_CHECK,
   ANNONIMOUS_ACTION,
+   USER_SIGN_OUT
  } from '../actions/types';
 
  const INITIAL_STATE = {
@@ -53,6 +54,9 @@ export default (state = INITIAL_STATE, action) => {
       };
     case ANNONIMOUS_ACTION:
       return { ...state, ...INITIAL_STATE };
+    case USER_SIGN_OUT:
+        //Set all states back to initial when user signs out
+        return { ...state, ...INITIAL_STATE };
     default:
       return state;
   }

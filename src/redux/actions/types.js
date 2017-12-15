@@ -11,3 +11,4 @@ export const PASSWORD_CHANGED = 'password_changed';
 export const PHONE_CHANGED = 'phoneNum_changed';
 export const RE_PASSWORD_CHANGED = 're_password_changed';
 export const STORENAME_CHANGED = 'store_name_changed';
+export const USER_SIGN_OUT = 'user_sign_out';

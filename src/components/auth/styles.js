@@ -85,7 +85,7 @@ const authStyles = {
     },
     btn: {
       backgroundColor: secondaryColor,
-      borderRadius: 2,
+      borderRadius: 5,
       marginRight: 15,
       marginLeft: 15,
       marginTop: -10
