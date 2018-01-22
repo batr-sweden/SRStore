@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from 'react-native-elements';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import { LoginScreen, SignUp, HomeScreen, Settings } from './components';
+import { LoginScreen, SignUp, HomeScreen, Settings, createCheck } from './components';
 import { primaryColor, secondaryColor } from '../src/config';
 
 export const NotAuthenticated = StackNavigator({
@@ -23,17 +23,26 @@ export const NotAuthenticated = StackNavigator({
 });
 
 export const createButtonStack = StackNavigator({
-  Main: {
+  HomeScreen: {
     screen: HomeScreen,
     navigationOptions: {
       header: null,
     },
   },
+  createCheck: {
+    screen: createCheck,
+    navigationOptions: {
+      title: 'Skapa check',
+      headerStyle: { height: 60, backgroundColor: primaryColor },
+      headerTitleStyle: { fontSize: 25 },
+      headerTintColor: '#fff'
+    },
+  }
 });
 
 export const Authenticated = TabNavigator({
   Home: {
-    screen: HomeScreen,
+    screen: createButtonStack,
     navigationOptions: {
       tabBarLabel: 'SYSTEM',
       tabBarIcon: ({ tintColor }) => (

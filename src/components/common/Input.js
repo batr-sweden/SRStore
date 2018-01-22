@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, View } from 'react-native';
 
 const Input = (props) => {
-const { containerStyle, inputStyle } = styles;
+const { containerStyle, inputStyle, numberOfLines } = styles;
 
   return (
     <View style={[containerStyle, props.componentContainerStyle]}>
@@ -16,6 +16,8 @@ const { containerStyle, inputStyle } = styles;
     onChangeText={props.onChangeText}
     returnKeyType={props.returnKeyType}
     keyboardType={props.keyboardType}
+    maxLength={props.maxLength}
+    numberOfLines={props.numberOfLines}
     />
     </View>
   );

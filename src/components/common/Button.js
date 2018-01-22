@@ -6,7 +6,7 @@ import { secondaryColor } from '../../config';
 // Create component
 const Button = ({
   onPress,
-  componentContainerStyle,
+  buttonContainerStyle,
   text,
   }) => {
   const { ContainerStyle, textStyle } = styles;
@@ -14,7 +14,8 @@ const Button = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[boxShadow, ContainerStyle, componentContainerStyle]}>
+      style={[boxShadow, ContainerStyle, buttonContainerStyle]}
+    >
         <Text style={textStyle}>
           {text}
         </Text>

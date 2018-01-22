@@ -16,3 +16,6 @@ export const SIGNIN_SIGNUP = 'signin_signup';
 
 //Btn Fetch
 export const BTN_FETCH = 'btn_fetch';
+
+//Check fetch
+export const CHECK_FETCH = 'check_fetch';

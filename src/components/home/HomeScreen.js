@@ -1,35 +1,91 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { View, FlatList, StatusBar } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { LayoutAnimation, View, FlatList, StatusBar, Alert } from 'react-native';
 import { btnFetch } from '../../redux/actions';
 import { Header, RewardButton, Spinner } from '../common';
 import homeStyle from './styles';
 
+//ANIMATION FOR DIFFERENT VIEW SIGNUP / SIGNIN
+const CustomLayoutSpring = {
+    duration: 500,
+    update: {
+      type: LayoutAnimation.Types.easeInEaseOut,
+      springDamping: 0.1,
+    },
+  };
+
 class HomeScreen extends Component {
+state = {
+  item: null,
+  toggle: false,
+  selectedItem: 'null',
+  display: 'none'
+}
+
 //Fetch button from firebase
  componentWillMount() {
    this.props.btnFetch();
  }
+
 //SignOutUser
  signOut() {
      this.props.signOutUser();
    }
+//Removes This Button From FireBase
+  _removeFirebaseData = (rowItem) => {
+    const { currentUser } = firebase.auth();
+    this.setState({ selectedItem: rowItem.uid });
+    console.log(rowItem.uid);
+    firebase.database().ref(`/Stores/${currentUser.uid}/logic/rewardBtns/${rowItem.uid}`)
+    .remove()
+    .then(() => {
+      this.props.btnFetch();
+    });
+  }
+
+  _deleteButton = (item) => {
+    console.log('Delete');
+    Alert.alert(
+  'VARNING',
+  'Vill du radera denna knappen?',
+  [
+    { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+    { text: 'JA', onPress: () => this._removeFirebaseData(item) },
+  ],
+  { cancelable: false }
+);
+  }
 
  _nav() {
-   console.log('clicked');
    this.props.navigation.navigate('CreateButton');
  }
 
- _renderBtn({ item }) {
+_onPressAction = (rowItem) => {
+    console.log('ListItem was selected');
+    LayoutAnimation.configureNext(CustomLayoutSpring);
+    this.setState({ selectedItem: rowItem.uid, toggle: !this.state.toggle });
+    if (this.state.toggle) {
+      // this.setState({ selectedItem: 'null' });
+    }
+  }
+
+ _renderBtn = ({ item }) => {
+   const isSelectedUser = this.state.selectedItem === item.uid;
+    console.log(`Rendered item - ${item.uid} for ${isSelectedUser}`);
+    const viewStyle = isSelectedUser ? homeStyle.showMore : homeStyle.hideMore;
    return (
      <RewardButton
       text={item.name}
-      onPress={() => console.log('yoyo')}
-      onPress={() => console.log(item.name, item.point, item.pointValue, item.category, item.color)}
-      componentParentStyle={{ backgroundColor: item.color }}
+      onPressMore={() => this._onPressAction(item)}
+      onPressEdit={() => console.log('Edit')}
+      onPressDelete={() => this._deleteButton(item)}
+      onPressButton={() => console.log(this.state)}
+      parentStyle={{ backgroundColor: item.color }}
+      expandViewStyle={viewStyle}
       categoryText={item.category}
+      infoText={item.info}
      />
   );
  }
@@ -41,6 +97,7 @@ class HomeScreen extends Component {
        return (
          <FlatList
            data={this.props.logic}
+           extraData={this.state}
            renderItem={this._renderBtn}
            keyExtractor={item => item.uid}
          />
@@ -49,27 +106,18 @@ class HomeScreen extends Component {
 
  render() {
    return (
-     <View style={{ flex: 1, backgroundColor: 'transparent' }}>
+     <View style={homeStyle.parentContainer}>
       <StatusBar barStyle="light-content" />
       <Header
         componentInputContainerStyle={{ display: 'flex' }}
         componentSortStyle={{ display: 'flex' }}
         componentViewStyle={{ height: 80 }}
+        placeholder={'Sök..'}
+        sortExpand={{ display: this.state.display }}
+        onPress={() => this.props.navigation.navigate('createCheck')}
       />
-      <View style={{ flex: 1, justifyContent: 'center' }}>
+      <View style={homeStyle.buttonContainer}>
         { this._renderSpinner() }
-      </View>
-      <View style={{ right: 0, bottom: 0, position: 'absolute' }}>
-        <Icon
-          reverse
-          name='plus-square-o'
-          type='font-awesome'
-          color='#449faa'
-          containerStyle={homeStyle.iconStyle}
-          iconStyle={{ color: '#fff' }}
-          // onPress={{}}
-          size={30}
-        />
       </View>
     </View>
   );
