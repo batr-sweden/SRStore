@@ -14,8 +14,9 @@ export const STORENAME_CHANGED = 'store_name_changed';
 export const USER_SIGN_OUT = 'user_sign_out';
 export const SIGNIN_SIGNUP = 'signin_signup';
 
-//Btn Fetch
-export const BTN_FETCH = 'btn_fetch';
-
 //Check fetch
 export const CHECK_FETCH = 'check_fetch';
+
+//User Actions
+export const USER_FETCH = 'user_fetch';
+export const FAQ_FETCH = 'faq_fetch';

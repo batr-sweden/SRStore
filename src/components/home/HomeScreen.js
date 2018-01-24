@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { LayoutAnimation, View, FlatList, StatusBar, Alert } from 'react-native';
-import { btnFetch } from '../../redux/actions';
+import { btnFetch, fetchUser } from '../../redux/actions';
 import { Header, RewardButton, Spinner } from '../common';
 import homeStyle from './styles';
 
@@ -24,17 +24,16 @@ state = {
   display: 'none'
 }
 
-//Fetch button from firebase
- componentWillMount() {
-   this.props.btnFetch();
- }
+  componentWillMount() {
+    //Fetch user info from firebase
+    this.props.fetchUser();
+  }
 
-//SignOutUser
- signOut() {
-     this.props.signOutUser();
-   }
 //Removes This Button From FireBase
   _removeFirebaseData = (rowItem) => {
+    /**
+      ALL LOGICS SHOULD BE IN REDUX FOLDER NOT HERE
+    **/
     const { currentUser } = firebase.auth();
     this.setState({ selectedItem: rowItem.uid });
     console.log(rowItem.uid);
@@ -124,16 +123,16 @@ _onPressAction = (rowItem) => {
  }
 }
 
-const mapStateToProps = ({ btns }) => {
-  const logic = _.map(btns.logic, (val, uid) => {
+const mapStateToProps = ({ user }) => {
+  const logic = _.map(user.logic, (val, uid) => {
     return { ...val, uid };
   });
-  const loading = btns.loading;
+  const loading = user.loading;
   //Pass state to Component
   return { logic, loading };
 };
 
 
 export default connect(mapStateToProps, {
-  btnFetch,
+  fetchUser,
 })(HomeScreen);
