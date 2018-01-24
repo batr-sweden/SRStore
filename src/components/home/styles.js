@@ -1,6 +1,6 @@
 const homeStyle = {
   parentContainer: {
-    flex: 1, backgroundColor: 'transparent'
+    flex: 1, backgroundColor: '#FFF'
   },
   showMore: {
     display: 'flex'

@@ -86,6 +86,8 @@ _onPressAction = (rowItem) => {
       expandViewStyle={viewStyle}
       categoryText={item.category}
       infoText={item.info}
+      iconName={item.iconName}
+      iconType={item.iconType}
      />
   );
  }

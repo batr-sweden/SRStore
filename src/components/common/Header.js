@@ -17,26 +17,34 @@ const Header = ({
   onPress,
   sortExpand }) => {
   const { sortStyle, textStyle, parentViewStyle, viewStyle, inputContainerStyle } = styles;
-
+  // <Input
+  //   placeholder={placeholder}
+  //   placeholderTextColor={searchText}
+  //   onChangeText={onChangeText}
+  //   value={value}
+  //   componentContainerStyle={[inputContainerStyle, componentInputContainerStyle]}
+  //   componentInputStyle={{ fontSize: 15, color: searchText, borderWidth: 1, borderRadius: 5 }}
+  // />
   return (
-    <View>
+    <View style={{ marginBottom: 10, }}>
     <View style={[viewStyle, componentViewStyle]}>
       <View style={parentViewStyle}>
-        <Input
-          placeholder={placeholder}
-          placeholderTextColor={searchText}
-          onChangeText={onChangeText}
-          value={value}
-          componentContainerStyle={[inputContainerStyle, componentInputContainerStyle]}
-          componentInputStyle={{ fontSize: 15, color: searchText }}
-        />
+<View style={{ flex: 1, alignItems: 'flex-start' }}>
+<Icon
+  name='search'
+  type='evilicon'
+  size={40}
+  color={primaryColor}
+/>
+</View>
         <Text style={[textStyle, componentTextStyle]}>{headerText}</Text>
         <View style={[sortStyle, componentSortStyle]}>
           <TouchableOpacity onPress={onPress}>
             <Icon
-              name='sort-amount-desc'
-              type='font-awesome'
-              color='#fff'
+              name='plus'
+              type='evilicon'
+              size={40}
+              color={primaryColor}
             />
           </TouchableOpacity>
         </View>
@@ -73,10 +81,11 @@ const styles = {
   },
   viewStyle: {
     height: 80,
-    backgroundColor: primaryColor,
-    shadowColor: primaryColor,
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.5,
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderColor: '#A2A6AC'
   },
   textStyle: {
     display: 'none',
@@ -105,7 +114,7 @@ const styles = {
     justifyContent: 'center',
     height: 30,
     marginLeft: 10,
-    marginRight: 15,
+
   }
 };
 

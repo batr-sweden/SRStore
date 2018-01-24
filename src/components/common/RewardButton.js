@@ -4,7 +4,13 @@ import Swipeout from 'react-native-swipeout';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { boxShadow } from '../../styles';
-
+// <View style={styles.categoryContainerStyle}>
+//   <View style={styles.categoryStyle}>
+//   <Text style={styles.categoryTextStyle}>
+//   {props.categoryText}
+//   </Text>
+//   </View>
+// </View>
 // Create component
 const RewardButton = (props) => {
   const swipeSettings = {
@@ -89,13 +95,15 @@ const RewardButton = (props) => {
         {...swipeSettings}
         style={styles.swipeStyle}
         >
-          <TouchableOpacity onPress={props.onPressButton}>
-            <View style={styles.categoryContainerStyle}>
-              <View style={styles.categoryStyle}>
-              <Text style={styles.categoryTextStyle}>
-              {props.categoryText}
-              </Text>
-              </View>
+          <TouchableOpacity style={{ height: 115, flexDirection: 'row' }} onPress={props.onPressButton}>
+            <View style={styles.iconStyle}>
+            <Icon
+              name={props.iconName}
+              type={props.iconType}
+              color={'#FFF'}
+              size={110}
+              iconStyle={{ fontWeight: 'bold', marginTop: 10 }}
+            />
             </View>
             <View style={styles.nameStyle}>
               <Text style={styles.nameTextStyle}>
@@ -123,12 +131,12 @@ const styles = {
     flex: 1, padding: 10
   },
   swipeStyle: {
-    backgroundColor: 'transparent', borderRadius: 15
+    backgroundColor: 'transparent', borderRadius: 5
   },
   expandViewStyle: {
     backgroundColor: '#eeeeee',
-    borderBottomRightRadius: 15,
-    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 5,
+    borderBottomLeftRadius: 5,
     padding: 5,
 
   },
@@ -145,7 +153,7 @@ const styles = {
   parentStyle: {
     backgroundColor: '#F6F7F9',
     borderWidth: 0,
-    borderRadius: 15,
+    borderRadius: 5,
   },
   categoryStyle: {
     flex: 1,
@@ -157,14 +165,19 @@ const styles = {
     paddingLeft: 5
   },
   nameStyle: {
-    height: 55,
-    flex: 1,
+    flex: 5,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 0,
   },
+  iconStyle: {
+    flex: 3,
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderWidth: 0,
+  },
   nameTextStyle: {
-    color: '#fff', fontSize: 22
+    color: '#fff', fontWeight: '300', fontSize: 30
   },
   infoContainer: {
     padding: 5, minHeight: 40
