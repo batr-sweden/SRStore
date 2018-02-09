@@ -1,8 +1,8 @@
 import React from 'react';
 import { Icon } from 'react-native-elements';
 import { StackNavigator, TabNavigator } from 'react-navigation';
-import { ifIphoneX } from 'react-native-iphone-x-helper';
-import { LoginScreen, SignUp, HomeScreen, Settings, createCheck } from './components';
+// import { ifIphoneX } from 'react-native-iphone-x-helper';
+import { LoginScreen, SignUp, HomeScreen, Settings, createCheck, addBtn, More } from './components';
 import { primaryColor, secondaryColor } from '../src/config';
 
 export const NotAuthenticated = StackNavigator({
@@ -33,9 +33,24 @@ export const createButtonStack = StackNavigator({
     screen: createCheck,
     navigationOptions: {
       title: 'Skapa check',
-      headerStyle: { height: 60, backgroundColor: primaryColor },
-      headerTitleStyle: { fontSize: 25 },
-      headerTintColor: '#fff'
+      headerStyle: { height: 60,
+      backgroundColor: '#fff',
+      borderBottomWidth: 1,
+      },
+      headerTitleStyle: { fontSize: 22, fontWeight: '500', color: '#424242' },
+      headerTintColor: primaryColor
+    },
+  },
+  addBtn: {
+    screen: addBtn,
+    navigationOptions: {
+      title: 'Skapa knapp',
+      headerStyle: { height: 60,
+      backgroundColor: '#fff',
+      borderBottomWidth: 1,
+      },
+      headerTitleStyle: { fontSize: 22, fontWeight: '500', color: '#424242' },
+      headerTintColor: primaryColor
     },
   }
 });
@@ -44,35 +59,34 @@ export const Authenticated = TabNavigator({
   Home: {
     screen: createButtonStack,
     navigationOptions: {
-      tabBarLabel: 'SYSTEM',
+      tabBarLabel: 'Hem',
       tabBarIcon: ({ tintColor }) => (
         <Icon name="home" size={35} color={tintColor} />
       )
     }
    },
+   More: {
+    screen: More,
+    navigationOptions: {
+      tabBarLabel: 'Mer',
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="more-horiz" size={35} color={tintColor} />
+      )
+    }
+  },
    Settings: {
     screen: Settings,
     navigationOptions: {
-      tabBarLabel: 'More',
+      tabBarLabel: 'Inställningar',
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="more-horiz" size={40} color={tintColor} />
+        <Icon name="settings" size={30} color={tintColor} />
       )
-    }
-  }
-}, {
-  tabBarOptions: {
-    activeTintColor: primaryColor,
-    style: {
-      backgroundColor: 'transparent',
-      ...ifIphoneX({
-        marginBottom: 20,
-      })
     }
   }
 }, {
   animationEnabled: true,
   tabBarOptions: {
-    activeTintColor: secondaryColor,
-    inactiveTintColor: primaryColor
+    activeTintColor: primaryColor,
+    inactiveTintColor: secondaryColor
   },
 });

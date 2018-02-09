@@ -2,10 +2,34 @@ import {
 callToActionColor,
 primaryColor,
 secondaryColor,
-textFontFamily
+textFontFamily,
+textColorSignIn
 } from '../../config';
 
 const authStyles = {
+  screenContainer: {
+    flex: 1,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: primaryColor
+  },
+  logo: {
+    container: {
+      flex: 2,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    headerText: {
+      color: textColorSignIn,
+      fontWeight: '100',
+      fontSize: 55
+    },
+    underText: {
+      fontSize: 17,
+      color: textColorSignIn,
+      fontWeight: '200'
+    },
+  },
   textChangeForm: {
     marginTop: 15,
     fontSize: 18,
@@ -80,6 +104,10 @@ const authStyles = {
   sectionStyle: {
     backgroundColor: '#fff',
     borderBottomWidth: 0
+  },
+  btnContainer: {
+    flexDirection: 'row',
+    marginTop: 20
   },
   infoDiv: {
     container: {

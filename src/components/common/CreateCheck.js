@@ -25,6 +25,8 @@ const CreateCheck = (props) => {
               componentInputStyle={inputValueStyle}
               placeholder='50 KR ...'
               maxLength={11}
+              value={props.value}
+              onChangeText={props.onChangeCheckValue}
             />
           </View>
         <View style={noteContainer}>
@@ -34,6 +36,8 @@ const CreateCheck = (props) => {
             placeholder='Gäller endast i restaurangen...'
             maxLength={42}
             numberOfLines={2}
+            value={props.value}
+            onChangeText={props.onChangeCheckDescription}
           />
         </View>
         <View style={expireRowContainer}>
@@ -47,13 +51,15 @@ const CreateCheck = (props) => {
             componentContainerStyle={inputContainerStyle}
             componentInputStyle={{ color: '#000', marginLeft: 3, fontSize: 15 }}
             maxLength={10}
+            value={props.value}
+            onChangeText={props.onChangeCheckExpire}
           />
         </View>
       </View>
       </View>
     </View>
     <Button
-      buttonContainerStyle={{ marginTop: 15, height: 50 }}
+      buttonContainerStyle={{ flex: 0, marginTop: 15, height: 50 }}
       text='Skapa'
       onPress={props.onPress}
     />
@@ -68,7 +74,7 @@ const styles = {
     padding: 5,
     flexDirection: 'row',
     height: 150,
-    shadowColor: '#000',
+    shadowColor: '#449faa',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2
   },
@@ -77,19 +83,31 @@ const styles = {
     flex: 3
   },
   imageStyle: {
-    height: 130, width: 130
+    height: 130,
+    width: 130
   },
   inputContainer: {
     flex: 5
   },
   valueContainer: {
-    backgroundColor: '#eeeeee', justifyContent: 'center', marginTop: 5, margin: 3, height: 50
+    backgroundColor: '#eeeeee',
+    justifyContent: 'center',
+    marginTop: 5,
+    margin: 3,
+    height: 50
   },
   noteContainer: {
-    backgroundColor: '#eeeeee', justifyContent: 'center', margin: 3, height: 40
+    backgroundColor: '#eeeeee',
+    justifyContent: 'center',
+    margin: 3,
+    height: 40
   },
   expireContainer: {
-    backgroundColor: '#eeeeee', justifyContent: 'center', margin: 3, height: 23, flex: 1
+    backgroundColor: '#eeeeee',
+    justifyContent: 'center',
+    margin: 3,
+    height: 23,
+    flex: 1
   },
   inputContainerStyle: {
     backgroundColor: 'transparent'
@@ -101,7 +119,9 @@ const styles = {
     marginLeft: 3
   },
   inputNoteStyle: {
-    color: '#000', marginLeft: 3, fontSize: 15
+    color: '#000',
+    marginLeft: 3,
+    fontSize: 15
   },
   expireRowContainer: {
     flexDirection: 'row'

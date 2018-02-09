@@ -1,48 +1,32 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import firebase from 'firebase';
 import { connect } from 'react-redux';
-import { LayoutAnimation, View, FlatList, StatusBar, Alert } from 'react-native';
-import { btnFetch } from '../../redux/actions';
+import { LayoutAnimation, View, FlatList, Alert } from 'react-native';
+import { fetchUser, deleteBtn } from '../../redux/actions';
 import { Header, RewardButton, Spinner } from '../common';
 import homeStyle from './styles';
-
-//ANIMATION FOR DIFFERENT VIEW SIGNUP / SIGNIN
-const CustomLayoutSpring = {
-    duration: 500,
-    update: {
-      type: LayoutAnimation.Types.easeInEaseOut,
-      springDamping: 0.1,
-    },
-  };
+import { CustomLayoutSpring } from './Component';
 
 class HomeScreen extends Component {
 state = {
   item: null,
   toggle: false,
   selectedItem: 'null',
-  display: 'none'
 }
 
-//Fetch button from firebase
- componentWillMount() {
-   this.props.btnFetch();
- }
+  componentWillMount() {
+    //Fetch user info from firebase
+    this.props.fetchUser();
+  }
 
-//SignOutUser
- signOut() {
-     this.props.signOutUser();
-   }
 //Removes This Button From FireBase
   _removeFirebaseData = (rowItem) => {
-    const { currentUser } = firebase.auth();
+    /**
+      ALL LOGICS SHOULD BE IN REDUX FOLDER NOT HERE
+    **/
     this.setState({ selectedItem: rowItem.uid });
     console.log(rowItem.uid);
-    firebase.database().ref(`/Stores/${currentUser.uid}/logic/rewardBtns/${rowItem.uid}`)
-    .remove()
-    .then(() => {
-      this.props.btnFetch();
-    });
+    this.props.deleteBtn();
   }
 
   _deleteButton = (item) => {
@@ -109,12 +93,9 @@ _onPressAction = (rowItem) => {
  render() {
    return (
      <View style={homeStyle.parentContainer}>
-      <StatusBar barStyle="light-content" />
       <Header
-        componentInputContainerStyle={{ display: 'flex' }}
-        componentSortStyle={{ display: 'flex' }}
-        componentViewStyle={{ height: 80 }}
-        placeholder={'Sök..'}
+        searchContainer={{ display: 'flex' }}
+        sortStyle={{ display: 'flex' }}
         sortExpand={{ display: this.state.display }}
         onPress={() => this.props.navigation.navigate('createCheck')}
       />
@@ -126,16 +107,16 @@ _onPressAction = (rowItem) => {
  }
 }
 
-const mapStateToProps = ({ btns }) => {
-  const logic = _.map(btns.logic, (val, uid) => {
+const mapStateToProps = ({ user }) => {
+  const logic = _.map(user.logic, (val, uid) => {
     return { ...val, uid };
   });
-  const loading = btns.loading;
+  const loading = user.loading;
   //Pass state to Component
   return { logic, loading };
 };
 
-
 export default connect(mapStateToProps, {
-  btnFetch,
+  fetchUser,
+  deleteBtn
 })(HomeScreen);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView, StatusBar, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import {
   emailChanged,

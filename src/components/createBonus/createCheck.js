@@ -8,13 +8,27 @@ import bonusStyle from './styles';
 
 class createCheck extends Component {
   state = {
-    item: null,
+    item:
+    {
+    value: '',
+    expire: '',
+    description: '',
+    uid: '23123'
+    }
   }
-
+//Fetch Check from firebase before component lanches
   componentWillMount() {
     this.props.checkFetch();
   }
 
+  _oldCheck = (item) => {
+    this.props.navigation.navigate('addBtn', { item });
+}
+  _newCheck = () => {
+    this.props.navigation.navigate('addBtn', { item: this.state.item });
+}
+
+//Render Check and pass item as prop
   _renderCheck = ({ item }) => {
     return (
       <View style={bonusStyle.checkContainer}>
@@ -23,12 +37,12 @@ class createCheck extends Component {
         value={item.value}
         description={item.description}
         expire={item.expire}
-        onPress={() => console.log(item.value)}
+        onPress={() => this._oldCheck(item)}
       />
       </View>
     );
   }
-
+//Render Spinner until we fetch checks.
   _renderSpinner() {
     if (this.props.loading) {
       return (<Spinner size='large' />
@@ -55,8 +69,20 @@ class createCheck extends Component {
         </View>
         <View style={bonusStyle.checkContainer}>
         <CreateCheck
+          onChangeCheckValue={(value) => {
+           const item = Object.assign({}, this.state.item, { value });
+           this.setState({ item });
+         }}
+          onChangeCheckDescription={(description) => {
+           const item = Object.assign({}, this.state.item, { description });
+           this.setState({ item });
+         }}
+          onChangeCheckExpire={(expire) => {
+           const item = Object.assign({}, this.state.item, { expire });
+           this.setState({ item });
+         }}
           source={require('../../images/qrcode-static.png')}
-          onPress={() => console.log('Skapa check')}
+          onPress={() => this._newCheck()}
         />
 
         </View>

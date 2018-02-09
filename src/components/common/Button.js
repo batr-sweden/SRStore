@@ -4,20 +4,16 @@ import { Text, TouchableOpacity } from 'react-native';
 import { boxShadow } from '../../styles';
 import { secondaryColor } from '../../config';
 // Create component
-const Button = ({
-  onPress,
-  buttonContainerStyle,
-  text,
-  }) => {
+const Button = (props) => {
   const { ContainerStyle, textStyle } = styles;
 
   return (
     <TouchableOpacity
-      onPress={onPress}
-      style={[boxShadow, ContainerStyle, buttonContainerStyle]}
+      onPress={props.onPress}
+      style={[boxShadow, ContainerStyle, props.buttonContainerStyle]}
     >
         <Text style={textStyle}>
-          {text}
+          {props.text}
         </Text>
     </TouchableOpacity>
   );
@@ -27,7 +23,7 @@ const styles = {
   ContainerStyle: {
     backgroundColor: secondaryColor,
     height: 40,
-    width: '100%',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,

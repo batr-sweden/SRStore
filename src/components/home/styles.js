@@ -18,6 +18,5 @@ const homeStyle = {
     shadowRadius: 5,
     elevation: 1,
   }
-
 };
 export default homeStyle;

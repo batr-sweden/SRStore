@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, View } from 'react-native';
 
 const Input = (props) => {
-const { containerStyle, inputStyle, numberOfLines } = styles;
+const { containerStyle, inputStyle } = styles;
 
   return (
     <View style={[containerStyle, props.componentContainerStyle]}>
@@ -17,7 +17,13 @@ const { containerStyle, inputStyle, numberOfLines } = styles;
     returnKeyType={props.returnKeyType}
     keyboardType={props.keyboardType}
     maxLength={props.maxLength}
-    numberOfLines={props.numberOfLines}
+    selectionColor={'#449faa'}
+    clearButtonMode={'while-editing'}
+    autoFocus={props.autoFocus}
+    onFocus={props.onFocus}
+    focusNextField={props.focusNextField}
+    blurOnSubmit={false}
+    onSubmitEditing={props.onSubmitEditing}
     />
     </View>
   );

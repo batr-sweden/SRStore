@@ -3,25 +3,24 @@ import { secondaryColor, subHeaderFontFamily } from '../../config';
 const styles = {
   viewContainer: {
     flex: 1,
+    backgroundColor: '#e0e0e0'
   },
-  logOut: {
-    btnStyle: {
-      backgroundColor: secondaryColor,
-      borderRadius: 5,
-      borderWidth: 0,
-      flex: 0,
-      marginBottom: 10,
-    },
-    txtStyle: {
-      color: '#fff',
-      fontSize: 18
-    }
+  headerText: {
+    display: 'flex'
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#eceff1',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    overflow: 'hidden',
+    padding: 5,
+    marginTop: 30
   },
   sectionContainer: {
     header: {
       fontSize: 22,
-      paddingLeft: 10,
-      paddingBottom: 5,
+      padding: 10,
       color: '#9e9e9e',
       fontFamily: subHeaderFontFamily
     },
@@ -31,7 +30,8 @@ const styles = {
   },
   sectionStyle: {
     btnStyle: {
-      borderWidth: 0
+      borderWidth: 0,
+      backgroundColor: '#fff'
     },
     btnTxt: {
       alignSelf: 'flex-start',
@@ -47,12 +47,12 @@ const styles = {
       flexDirection: 'row',
       justifyContent: 'space-between',
       padding: 10,
+      margin: 2,
+      backgroundColor: '#fff'
     }
   },
-  scrollContainer: {
+  contentContainerContainer: {
     flex: 1,
-    backgroundColor: '#eeeeee',
-    paddingVertical: 20
   }
 };
 

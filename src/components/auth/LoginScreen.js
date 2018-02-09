@@ -8,7 +8,7 @@ import {
   StatusBar } from 'react-native';
 import SignInForm from './SignInForm';
 import SignUp from './SignUp';
-import { primaryColor, textColorSignIn } from '../../config';
+import { authStyles } from './styles';
 
 //ANIMATION FOR DIFFERENT VIEW SIGNUP / SIGNIN
 const CustomLayoutSpring = {
@@ -39,22 +39,20 @@ renderDisplay() {
 }
     render() {
         return (
-          <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-            <View style={{ flex: 1, paddingLeft: 20,
-            paddingRight: 20, backgroundColor: primaryColor }}>
+          <KeyboardAvoidingView behavior="padding" style={authStyles.screenContainer}>
             <StatusBar
               barStyle="light-content"
             />
-              <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: textColorSignIn, fontWeight: '100', fontSize: 55 }}>
+              <View style={authStyles.logo.container}>
+                <Text style={authStyles.logo.headerText}>
                 BATHER
                 </Text>
-                <Text style={{ fontSize: 17, color: textColorSignIn, fontWeight: '200' }}>
+                <Text style={authStyles.logo.underText}>
                 Business
                 </Text>
               </View>
                 {this.renderDisplay()}
-            </View>
+
           </KeyboardAvoidingView>
         );
     }

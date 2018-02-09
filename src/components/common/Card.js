@@ -19,9 +19,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
-    // padding: 10,
-    // margin: 5,
-    // marginTop: 10
   }
 });
 

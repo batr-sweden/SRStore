@@ -4,13 +4,7 @@ import Swipeout from 'react-native-swipeout';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { boxShadow } from '../../styles';
-// <View style={styles.categoryContainerStyle}>
-//   <View style={styles.categoryStyle}>
-//   <Text style={styles.categoryTextStyle}>
-//   {props.categoryText}
-//   </Text>
-//   </View>
-// </View>
+
 // Create component
 const RewardButton = (props) => {
   const swipeSettings = {
@@ -42,7 +36,7 @@ const RewardButton = (props) => {
       {
         onPress: props.onPressEdit,
         text: 'Ändra',
-        type: 'primary',
+        backgroundColor: '#EA9632',
         component:
         (
           <View style={{ flex: 1, }}>

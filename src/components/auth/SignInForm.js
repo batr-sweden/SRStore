@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser, formChanges } from '../../actions';
+import { emailChanged, passwordChanged, loginUser, formChanges } from '../../redux/actions';
 import { Spinner, Input, Button, CardSection } from '../common';
 import { authStyles } from './styles';
 import { boxShadow } from '../../styles';
@@ -49,7 +49,6 @@ class SignInForm extends Component {
             <Input
               placeholder="E-Mail Adress"
               placeholderTextColor={inputColorSignUp}
-              //label="Email"
               value={this.props.email}
               onChangeText={this.onEmailChange.bind(this)}
               returnKeyType="next"
@@ -64,7 +63,6 @@ class SignInForm extends Component {
               secureTextEntry
               placeholderTextColor={inputColorSignUp}
               placeholder="Password"
-              //label="Password"
               value={this.props.password}
               returnKeyType="go"
               onChangeText={this.onPasswordChange.bind(this)}
@@ -72,7 +70,7 @@ class SignInForm extends Component {
               componentInputStyle={{ color: inputColorSignUp }}
             />
           </CardSection>
-      <View style={{ flexDirection: 'row', marginTop: 20 }}>
+      <View style={authStyles.btnContainer}>
         {this.renderButton()}
       </View>
       <Text
