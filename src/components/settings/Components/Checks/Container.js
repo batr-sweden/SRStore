@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import QRCode from 'react-native-qrcode';
 import { Icon } from 'react-native-elements';
-import { Card } from '../../common';
+import { Card } from '../../../common';
 
 const Checks = () => {
   const checks = {

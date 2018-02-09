@@ -2,9 +2,9 @@ import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { RaisedTextButton } from 'react-native-material-buttons';
 import { TextField } from 'react-native-material-textfield';
-import { CardSection } from '../../common';
-import { authStyles } from '../../auth/styles';
-import { secondaryColor } from '../../../config';
+import { CardSection } from '../../../common';
+import { authStyles } from '../../../auth/styles';
+import { secondaryColor } from '../../../../config';
 
 const CompanyInfo = ({ info }) => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, Text, View } from 'react-native';
-import { Card } from '../../common';
+import { Card } from '../../../common';
 
 const FAQ = ({ faq }) => {
   return (

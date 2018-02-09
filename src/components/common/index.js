@@ -10,3 +10,4 @@ export * from './HorizontalLine';
 export * from './RewardButton';
 export * from './Check';
 export * from './CreateCheck';
+export * from './SimpleCheck';

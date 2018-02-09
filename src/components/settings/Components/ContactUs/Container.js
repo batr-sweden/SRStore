@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { RaisedTextButton } from 'react-native-material-buttons';
 import { TextField } from 'react-native-material-textfield';
-import { Card, CardSection } from '../../common';
-import { authStyles } from '../../auth/styles';
-import { secondaryColor } from '../../../config';
+import { Card, CardSection } from '../../../common';
+import { authStyles } from '../../../auth/styles';
+import { secondaryColor } from '../../../../config';
 
 const ContactUs = ({ info }) => {
   return (

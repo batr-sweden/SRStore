@@ -1,41 +1,20 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
-import { Button } from '../common';
+import { View } from 'react-native';
+import { Button, SimpleCheck } from '../common';
 
 const Check = (props) => {
-  const { parentStyle, qrStyle, imageStyle, inputContainer, textValueStyle,
-  textDescStyle, textExpireStyle, textValueContainer, textDescContainer,
-  textExpireContainer, buttonStyle } = styles;
+  const { buttonStyle } = styles;
 
   return (
     <View>
-    <View style={[parentStyle, props.parentStyle]}>
-      <View style={qrStyle}>
-        <Image
-          source={props.source}
-          style={imageStyle}
-        />
-      </View>
-      <View style={inputContainer}>
-        <View style={textValueContainer}>
-          <Text style={textValueStyle}>
-            {props.value}
-          </Text>
-        </View>
-        <View style={textDescContainer}>
-          <Text style={textDescStyle}>
-            {props.description}
-          </Text>
-        </View>
-        <View style={textExpireContainer}>
-          <Text style={textExpireStyle}>
-            Giltlig t.o.m: {props.expire}
-          </Text>
-        </View>
-      </View>
-    </View>
+      <SimpleCheck
+        value={props.value}
+        description={props.description}
+        expire={props.expire}
+        checkID={props.checkID}
+      />
       <Button
-        buttonContainerStyle={[buttonStyle, props.buttonStyle]}
+        buttonContainerStyle={buttonStyle}
         text='Välj'
         onPress={props.onPress}
       />
@@ -50,11 +29,10 @@ const styles = {
     padding: 5,
     flexDirection: 'row',
     height: 150,
-    // width: 300,
-    shadowColor: '#449faa',
-    shadowOffset: { width: 3, height: 3 },
-    shadowRadius: 6,
-    shadowOpacity: 0.6
+    width: 300,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2
   },
   textValueStyle: {
     color: '#e74c3c',
@@ -63,44 +41,34 @@ const styles = {
     marginLeft: 3
   },
   textValueContainer: {
-    backgroundColor: 'transparent',
-    marginTop: 0,
-    margin: 3,
-    height: 50
+    backgroundColor: 'transparent', marginTop: 0, margin: 3, height: 50
   },
   textDescStyle: {
     color: '#000',
     marginLeft: 3,
   },
   textDescContainer: {
-    backgroundColor: 'transparent',
-    margin: 3,
-    height: 40
+    backgroundColor: 'transparent', margin: 3, height: 40
   },
   textExpireStyle: {
     color: '#000',
     marginLeft: 3,
   },
   textExpireContainer: {
-    backgroundColor: 'transparent',
-    margin: 3,
-    height: 23
+    backgroundColor: 'transparent', margin: 3, height: 23
   },
   qrContainer: {
     margin: 5,
     flex: 3
   },
   imageStyle: {
-    height: 130,
-    width: 130
+    height: 130, width: 130
   },
   inputContainer: {
     flex: 5
   },
   buttonStyle: {
-    marginTop: 15,
-    height: 50,
-    flex: 0
+    marginTop: 15, height: 50
   }
 };
 

@@ -9,7 +9,7 @@ import { AppButton, Header } from '../common';
 import { primaryColor, secondaryColor } from '../../config';
 import { fetchFAQ, signOutUser } from '../../redux/actions';
 import { styles } from './style';
-import { CompanyInfo, FAQ, Checks, ContactUs, TermsCondition } from './helpers';
+import { CompanyInfo, FAQ, Checks, ContactUs, TermsCondition, UserSettings } from './Components';
 
 class Settings extends Component {
   state = {
@@ -32,7 +32,6 @@ class Settings extends Component {
     return (
       <View style={viewContainer}>
         <Header
-          textStyle={{ display: 'flex' }}
           headerText='More'
           componentTextStyle={styles.headerText}
         />
@@ -47,7 +46,7 @@ class Settings extends Component {
               text='Företags information'
             />
             <Section
-              onPress={(e) => this._showModal('null', e)}
+              onPress={(e) => this._showModal('UserSettings', e)}
               text='Ändra inställningar'
             />
             <Section
@@ -123,6 +122,7 @@ class Settings extends Component {
                case "Check": return <Checks faq={this.props.faq} />;
                case "contact": return <ContactUs info={this.props.store} />;
                case "terms": return <TermsCondition faq={this.props.faq} />;
+               case "UserSettings": return <UserSettings info={this.props.store} />;
                default: return <FAQ faq={this.props.faq} />;
               }
             })()}
