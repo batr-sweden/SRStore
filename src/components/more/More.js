@@ -6,12 +6,12 @@ import { IconContainer } from './components/iconContainer';
 class more extends Component {
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={{ flex: 1 }}>
       <Header
-      textStyle={{ display: 'flex' }}
-      headerText='Mer'
+        textStyle={{ display: 'flex' }}
+        headerText='Mer'
       />
-      <View style={{ flex: 2 }} />
+      <View style={{ flex: 3 }} />
       <View style={{ flex: 1, flexDirection: 'row' }}>
       <IconContainer
       iconName='user'

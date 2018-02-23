@@ -68,7 +68,7 @@ const styles = {
     flex: 5
   },
   buttonStyle: {
-    marginTop: 15, height: 50
+    flex: 0, marginTop: 5
   }
 };
 

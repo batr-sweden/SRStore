@@ -4,7 +4,7 @@ import { terms } from './termObj';
 
 const TermsCondition = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.mainHeader}>
         {terms.heading}
       </Text>
@@ -34,6 +34,10 @@ const TermsCondition = () => {
 
 
 const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
 	body: {
 		lineHeight: 20,
 		paddingBottom: 10
@@ -43,6 +47,8 @@ const styles = {
     marginBottom: 10
   },
   mainHeader: {
+    marginTop: 20,
+    marginBottom: 20,
     alignSelf: 'center',
     color: 'steelblue',
     fontSize: 18,

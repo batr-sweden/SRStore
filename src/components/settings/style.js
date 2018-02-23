@@ -1,4 +1,4 @@
-import { secondaryColor, subHeaderFontFamily } from '../../config';
+import { subHeaderFontFamily } from '../../config';
 
 const styles = {
   viewContainer: {
@@ -8,14 +8,17 @@ const styles = {
   headerText: {
     display: 'flex'
   },
+  hideIconStyle: {
+    right: 5,
+    position: 'absolute',
+    zIndex: 1,
+    padding: 5,
+    alignSelf: 'flex-end',
+    top: 5 },
   modalContainer: {
     flex: 1,
-    backgroundColor: '#eceff1',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    zIndex: 0,
     overflow: 'hidden',
-    padding: 5,
-    marginTop: 30
   },
   sectionContainer: {
     header: {

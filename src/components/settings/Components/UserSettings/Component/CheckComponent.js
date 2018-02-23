@@ -9,7 +9,6 @@ import { styles } from '../Styles';
 export const CheckComponent = props => {
   return (
     <View>
-
       <Dash
         style={{ paddingVertical: 10 }}
         dashColor={'grey'}

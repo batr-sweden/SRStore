@@ -5,5 +5,6 @@ import Settings from './settings';
 import createCheck from './createBonus/createCheck';
 import addBtn from './createBonus/addBtn';
 import More from './more/More';
+import UserSettings from './settings/Components/UserSettings';
 
-export { createCheck, LoginScreen, SignUp, HomeScreen, Settings, addBtn, More };
+export { UserSettings, createCheck, LoginScreen, SignUp, HomeScreen, Settings, addBtn, More };

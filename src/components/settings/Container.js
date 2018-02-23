@@ -1,12 +1,11 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Modal, Text, ScrollView, View } from 'react-native';
+import { Modal, Text, ScrollView, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import Dash from 'react-native-dash';
 import { Icon } from 'react-native-elements';
-import { RaisedTextButton } from 'react-native-material-buttons';
-import { AppButton, Header } from '../common';
-import { primaryColor, secondaryColor } from '../../config';
+import { AppButton, Header, Button } from '../common';
+import { primaryColor } from '../../config';
 import { fetchFAQ, signOutUser } from '../../redux/actions';
 import { styles } from './style';
 import { CompanyInfo, FAQ, Checks, ContactUs, TermsCondition, UserSettings } from './Components';
@@ -32,7 +31,8 @@ class Settings extends Component {
     return (
       <View style={viewContainer}>
         <Header
-          headerText='More'
+          textStyle={{ display: 'flex' }}
+          headerText='Inställningar'
           componentTextStyle={styles.headerText}
         />
         <ScrollView>
@@ -93,26 +93,29 @@ class Settings extends Component {
           <Dashed />
         </View>
 
-        <RaisedTextButton
-          style={{ margin: 10 }}
-          title='Sign Out'
+        <Button
+          buttonContainerStyle={{ margin: 10 }}
           onPress={this.signOut}
-          color={secondaryColor}
-          titleColor='white'
+          text='Logga ut'
         />
-
+        <StatusBar
+          barStyle="dark-content"
+        />
         <Modal
           visible={this.state.isModalVisible}
           animationType={"slide"}
           transparent
         >
+        <StatusBar hidden />
           <View style={modalContainer}>
             <Icon
-              name='arrow-down'
-              type='evilicon'
-              color='#424242'
-              size={30}
-              containerStyle={{ alignSelf: 'flex-end', padding: 5 }}
+              raised
+              name='close'
+              type='font-awesome'
+              color='#000'
+              size={15}
+              containerStyle={{ backgroundColor: '#fff' }}
+              containerStyle={styles.hideIconStyle}
               onPress={this._hideModal}
             />
             {(() => {

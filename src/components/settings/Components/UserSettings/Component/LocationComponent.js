@@ -1,10 +1,9 @@
 import React from 'react';
-import { Alert, Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Alert, Text, View, Image } from 'react-native';
+import { Button, Divider } from 'react-native-elements';
 import { styles } from '../Styles';
 
-export const LocationComponent = ({ gpsLocation, location, phone, getLocation }) => {
-
+export const LocationComponent = ({ ...props, gpsLocation, location, phone, getLocation }) => {
   const askForLocation = () => {
     console.log(gpsLocation);
     Alert.alert(
@@ -17,7 +16,7 @@ export const LocationComponent = ({ gpsLocation, location, phone, getLocation })
       ],
       { cancelable: true }
     );
-  }
+  };
 
   const Elements = {
     geolocation: (storeLocation) => {
@@ -32,6 +31,7 @@ export const LocationComponent = ({ gpsLocation, location, phone, getLocation })
     },
     button: (showAlert) => {
       return (
+        <View style={props.edit}>
         <Button
           raised
           buttonStyle={{ backgroundColor: '#b3e5fc' }}
@@ -39,29 +39,47 @@ export const LocationComponent = ({ gpsLocation, location, phone, getLocation })
           title='Set Map Location'
           onPress={showAlert}
         />
+        </View>
       );
     }
-  }
+  };
 
   return (
     <View>
       {gpsLocation.geoLocation ? Elements.geolocation(gpsLocation) : Elements.button(askForLocation)}
 
-      <View style={{ flex: 1, flexDirection: 'row', paddingVertical: 15 }}>
-        <View style={{ flex: 3, paddingLeft: 5 }}>
+      <View style={{ flex: 1, flexDirection: 'row', marginTop: 15 }}>
+          <View style={{ flex: 1 }}>
           <Text style={[styles.header, styles.innerText, styles.alignCenter]}>
-            Location
+            Besök oss på
           </Text>
+          <Divider style={{ backgroundColor: '#E0E0E0', marginLeft: 10, marginRight: 10 }} />
+          <View style={{ flex: 1, padding: 10, alignItems: 'center', flexDirection: 'row' }}>
+          <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'column' }}>
+          <View style={{ flex: 1 }}>
           <Text style={[styles.innerText, styles.alignCenter]}>
-            {location.address} {"\n"}
+            {location.address}
+          </Text>
+          </View>
+          <View style={{ flex: 1 }}>
+          <Text style={[styles.innerText, styles.alignCenter]}>
             {location.city}
           </Text>
+          </View>
+          <View style={{ flex: 1 }}>
           <Text style={[styles.innerText, styles.alignCenter]}>
             tel: {phone}
           </Text>
+          </View>
+          </View>
+          <Image
+           style={{ borderRadius: 10, width: 50, height: 50 }}
+           source={{ uri: props.logo }}
+          />
+          </View>
         </View>
+
       </View>
     </View>
-  )
-
-}
+  );
+};

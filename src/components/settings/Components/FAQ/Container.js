@@ -4,7 +4,7 @@ import { Card } from '../../../common';
 
 const FAQ = ({ faq }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.mainHeader}>
         FAQ
       </Text>
@@ -32,6 +32,10 @@ const _renderBtn = ({ item }) => {
 };
 
 const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
   answer: {
     paddingTop: 10,
     color: 'gray'
@@ -51,11 +55,12 @@ const styles = {
     fontWeight: '500'
   },
   mainHeader: {
+    marginTop: 20,
+    marginBottom: 20,
     alignSelf: 'center',
     color: 'steelblue',
     fontSize: 18,
     fontWeight: '700',
-    paddingBottom: 10
   }
 };
 

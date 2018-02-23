@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { LayoutAnimation, View, FlatList, Alert } from 'react-native';
+import { LayoutAnimation, View, FlatList, Alert, StatusBar } from 'react-native';
 import { fetchUser, deleteBtn } from '../../redux/actions';
 import { Header, RewardButton, Spinner } from '../common';
 import homeStyle from './styles';
@@ -98,6 +98,9 @@ _onPressAction = (rowItem) => {
         sortStyle={{ display: 'flex' }}
         sortExpand={{ display: this.state.display }}
         onPress={() => this.props.navigation.navigate('createCheck')}
+      />
+      <StatusBar
+        barStyle="dark-content"
       />
       <View style={homeStyle.buttonContainer}>
         { this._renderSpinner() }

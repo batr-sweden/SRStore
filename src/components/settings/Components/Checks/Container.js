@@ -164,7 +164,9 @@ const styles = {
     }
   },
   container: {
-    flex: 1
+    flex: 1,
+    marginTop: 60,
+    backgroundColor: '#f8f8f8'
   },
   header: {
     color: 'steelblue',

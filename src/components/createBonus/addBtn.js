@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
-import { Check, Button } from '../common';
+import { SimpleCheck, Button } from '../common';
 import { InputValue, ChooseIcon, ChooseColor } from './Component';
 import bonusStyle from './styles';
 
@@ -26,7 +26,21 @@ class addBtn extends Component {
         type: 'evilicon',
         selected: false
       }
-    ]
+    ],
+    colors: [{
+      id: 1,
+      color: '#00cec9',
+      selected: false
+    }, {
+      id: 2,
+      color: '#0984e3',
+      selected: false
+    }, {
+      id: 3,
+      color: '#6c5ce7',
+      selected: false
+    },
+  ]
   }
 
   _selectedIcon = (id) => {
@@ -45,10 +59,26 @@ class addBtn extends Component {
     //  console.log(`Rendered item - ${id} for ${isSelectedUser}`);
   };
 
+  _selectedColor = (id) => {
+    const newState = this.state.colors.map(obj => {
+      if (obj.selected) {
+        return Object.assign({}, obj, { selected: !obj.selected });
+      }
+      if (obj.id === id) {
+        return Object.assign({}, obj, { selected: !obj.selected });
+      }
+      return obj;
+    });
+
+    this.setState({ colors: newState });
+    // const isSelectedUser = this.state.selectedItem === id;
+    //  console.log(`Rendered item - ${id} for ${isSelectedUser}`);
+  };
+
   _renderCheck = () => {
     const props = this.props.navigation.state.params;
     return (
-    <Check
+    <SimpleCheck
       source={require('../../images/qrcode-static.png')}
       value={props.item.value}
       description={props.item.description}
@@ -58,38 +88,56 @@ class addBtn extends Component {
     />
   );
   }
+  _checkValue = () => {
+    const props = this.props.navigation.state.params;
+    if (props.item.value) {
+      return (
+        props.item.value
+      );
+    } return;
+  }
 
   render() {
     return (
       <View style={bonusStyle.addBtnStyle.viewContainer}>
         <ScrollView>
+        <View style={{ marginLeft: 10, marginRight: 10 }}>
           {this._renderCheck()}
+          </View>
           <InputValue
             sectionName='Poäng för att uppnå check'
             sectionNumner='1'
-            autoFocus={true}
+            autoFocus
+            onChangeText={(text) => console.log(text)}
+            value={this._checkValue()}
           />
           <InputValue
             sectionName='Poäng tillgodo vid köp'
             sectionNumner='2'
+            onChangeText={(text) => console.log(text)}
+          />
+          <InputValue
+            sectionName='Namnge knappen'
+            sectionNumner='3'
+            onChangeText={(text) => console.log(text)}
           />
           <ChooseIcon
             onPress={(id) => this._selectedIcon(id)}
             sectionName='Kategori'
-            sectionNumner='3'
+            sectionNumner='4'
             color={this.state.icons}
             icons={this.state.icons}
           />
           <ChooseColor
             sectionName='Färg'
-            sectionNumner='4'
-            colorSectionOne={{ backgroundColor: '#00cec9' }}
-            colorSectionTwo={{ backgroundColor: '#0984e3' }}
-            colorSectionThree={{ backgroundColor: '#6c5ce7' }}
+            sectionNumner='5'
+            onPress={(id) => this._selectedColor(id)}
+            colors={this.state.colors}
+
           />
           <InputValue
             sectionName='Notering'
-            sectionNumner='5'
+            sectionNumner='6'
           />
           <Button
             buttonContainerStyle={bonusStyle.addBtnStyle.btnStyle}

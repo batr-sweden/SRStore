@@ -88,7 +88,7 @@ const styles = {
     fontSize: 33,
   },
   checkExpireStyle: {
-    color: 'red',
+    color: '#000',
   },
   qrContainer: {
     margin: 5

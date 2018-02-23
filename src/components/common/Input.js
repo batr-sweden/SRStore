@@ -11,6 +11,8 @@ const { containerStyle, inputStyle } = styles;
     secureTextEntry={props.secureTextEntry}
     placeholder={props.placeholder}
     autoCorrect={false}
+    editable
+    numberOfLines={props.numberOfLines}
     style={[inputStyle, props.componentInputStyle]}
     value={props.value}
     onChangeText={props.onChangeText}
@@ -24,6 +26,8 @@ const { containerStyle, inputStyle } = styles;
     focusNextField={props.focusNextField}
     blurOnSubmit={false}
     onSubmitEditing={props.onSubmitEditing}
+    multiline={props.multiline}
+    onContentSizeChange={props.onContentSizeChange}
     />
     </View>
   );
@@ -34,17 +38,17 @@ const styles = {
         backgroundColor: '#fff',
         justifyContent: 'center',
         flexDirection: 'row',
-        height: 40,
-        alignItems: 'center'
+        // alignItems: 'center'
+
     },
     inputStyle: {
         color: '#000',
         paddingRight: 5,
         paddingLeft: 5,
         fontSize: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // flexDirection: 'row',
         marginLeft: 0,
         lineHeight: 23,
         flex: 1,

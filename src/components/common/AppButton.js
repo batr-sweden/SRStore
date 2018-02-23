@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#007aff',
     fontFamily: textFontFamily,
-    fontSize: 22,
+    fontSize: 18,
     letterSpacing: 2,
     paddingTop: 10,
     paddingBottom: 10

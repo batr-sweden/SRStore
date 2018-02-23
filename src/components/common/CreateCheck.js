@@ -59,7 +59,7 @@ const CreateCheck = (props) => {
       </View>
     </View>
     <Button
-      buttonContainerStyle={{ flex: 0, marginTop: 15, height: 50 }}
+      buttonContainerStyle={{ flex: 0, marginTop: 15 }}
       text='Skapa'
       onPress={props.onPress}
     />

@@ -18,6 +18,8 @@ const InputValue = (props) => {
     componentContainerStyle={bonusStyle.addBtnStyle.inputContainerStyle}
     componentInputStyle={bonusStyle.addBtnStyle.inputStyle}
     autoFocus={props.autoFocus}
+    onChangeText={props.onChangeText}
+    value={props.value}
     // keyboardType='numeric'
     placeholder=''
     returnKeyType={props.returnKeyType}
@@ -44,13 +46,14 @@ const ChooseIcon = (props) => {
         return (
           <TouchableOpacity
             key={key}
-            style={[bonusStyle.addBtnStyle.iconContainer, props.iconContainer]}
+            style={[bonusStyle.addBtnStyle.iconContainer,
+              { backgroundColor: prop.selected ? primaryColor : '#fff' }]}
           >
             <Icon
               name={prop.name}
               type={prop.type}
               size={40}
-              color={prop.selected ? 'red' : 'green'}
+              color={prop.selected ? '#fff' : primaryColor}
               onPress={() => props.onPress(prop.id)}
             />
           </TouchableOpacity>
@@ -73,15 +76,17 @@ const ChooseColor = (props) => {
     <View style={bonusStyle.addBtnStyle.numberContainer}>
       <Text style={bonusStyle.addBtnStyle.txtNumberStyle}>{props.sectionNumner}</Text>
     </View>
-    <View style={bonusStyle.addBtnStyle.colorContainer}>
-    <View style={[bonusStyle.addBtnStyle.colorSection, props.colorSectionOne]} />
-    </View>
-    <View style={bonusStyle.addBtnStyle.colorContainer}>
-    <View style={[bonusStyle.addBtnStyle.colorSection, props.colorSectionTwo]} />
-    </View>
-    <View style={bonusStyle.addBtnStyle.colorContainer}>
-    <View style={[bonusStyle.addBtnStyle.colorSection, props.colorSectionThree]} />
-    </View>
+    {props.colors.map((prop, key) => {
+      return (
+        <TouchableOpacity
+        key={key}
+        onPress={() => props.onPress(prop.id)}
+        style={[bonusStyle.addBtnStyle.colorContainer, { backgroundColor: prop.selected ? primaryColor : '#fff' }]}
+        >
+          <View style={[bonusStyle.addBtnStyle.colorSection, { backgroundColor: prop.color }]} />
+        </TouchableOpacity>
+      );
+    })}
     </View>
     </View>
   );

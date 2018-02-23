@@ -98,12 +98,9 @@ const bonusStyle = {
     colorSection: {
       height: 35,
       width: 35,
-      borderWidth: 1,
-      borderColor: '#BDBDBD',
       borderRadius: 120,
     },
     viewContainer: {
-      backgroundColor: '#fff',
       flex: 1
     },
     checkStyle: {
