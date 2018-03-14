@@ -21,11 +21,14 @@ const styles = {
     overflow: 'hidden',
   },
   sectionContainer: {
-    header: {
-      fontSize: 22,
-      padding: 10,
+    h1Container: {
+      marginTop: 10,
+      marginLeft: 10,
+      marginBottom: -10,
+      flexDirection: 'row'
+    },
+    h1TextStyle: {
       color: '#9e9e9e',
-      fontFamily: subHeaderFontFamily
     },
     msgContainer: {
       backgroundColor: '#fff'

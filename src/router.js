@@ -2,8 +2,8 @@ import React from 'react';
 import { Icon } from 'react-native-elements';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 // import { ifIphoneX } from 'react-native-iphone-x-helper';
-import { Settings, LoginScreen, SignUp, HomeScreen, createCheck, addBtn, More } from './components';
-import { primaryColor, secondaryColor } from '../src/config';
+import { Settings, LoginScreen, SignUp, HomeScreen, createCheck, addBtn } from './components';
+import { primaryColor, secondaryColor, textFontFamily } from '../src/config';
 
 export const NotAuthenticated = StackNavigator({
   LoginScreen: {
@@ -32,12 +32,17 @@ export const createButtonStack = StackNavigator({
   createCheck: {
     screen: createCheck,
     navigationOptions: {
-      title: 'Skapa check',
+      title: 'Check',
       headerStyle: { height: 60,
       backgroundColor: '#fff',
       borderBottomWidth: 1,
       },
-      headerTitleStyle: { fontSize: 22, fontWeight: '500', color: '#424242' },
+      headerTitleStyle: {
+      fontFamily: textFontFamily,
+      color: '#424242',
+      fontWeight: '300',
+      backgroundColor: 'transparent',
+      fontSize: 22 },
       headerTintColor: primaryColor
     },
   },
@@ -49,7 +54,12 @@ export const createButtonStack = StackNavigator({
       backgroundColor: '#fff',
       borderBottomWidth: 1,
       },
-      headerTitleStyle: { fontSize: 22, fontWeight: '500', color: '#424242' },
+      headerTitleStyle: {
+      fontFamily: textFontFamily,
+      color: '#424242',
+      fontWeight: '300',
+      backgroundColor: 'transparent',
+      fontSize: 22 },
       headerTintColor: primaryColor
     },
   }
@@ -65,15 +75,6 @@ export const Authenticated = TabNavigator({
       )
     }
    },
-   More: {
-    screen: More,
-    navigationOptions: {
-      tabBarLabel: 'Mer',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="more-horiz" size={35} color={tintColor} />
-      )
-    }
-  },
    Settings: {
     screen: Settings,
     navigationOptions: {
@@ -86,7 +87,7 @@ export const Authenticated = TabNavigator({
 }, {
   animationEnabled: true,
   tabBarOptions: {
-    activeTintColor: primaryColor,
-    inactiveTintColor: secondaryColor
+    activeTintColor: secondaryColor,
+    inactiveTintColor: primaryColor
   },
 });

@@ -1,34 +1,34 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { headerFontFamily, textFontFamily } from '../../config';
+import { headerFontFamily, textFontFamily, subHeaderFontFamily } from '../../config';
 import { stringToUpper } from '../../helpers';
-
+// <Text style={[styles.textStyle, styles.hearderMiniStyle, props.hearderMiniStyle]}>
+//   {'Busniess'}
+// </Text>
 const Logo = (props) => {
   return (
     <View style={[styles.containerStyle, props.containerStyle]}>
       <Text style={[styles.textStyle, styles.headerStyle, props.headerStyle]}>
-        {stringToUpper(props.header)}
+        {props.headerText}
       </Text>
-      <Text style={[styles.textStyle, styles.hearderMiniStyle, props.hearderMiniStyle]}>
-        {props.headerMini}
-      </Text>
+
     </View>
   );
 };
 
 const styles = {
   containerStyle: {
-    padding: 15,
     alignItems: 'center',
     flexDirection: 'column'
   },
   textStyle: {
     fontFamily: textFontFamily,
-    color: '#fff'
+    color: '#424242',
+    backgroundColor: 'transparent'
   },
   headerStyle: {
-    fontFamily: headerFontFamily,
-    fontSize: 40
+    fontFamily: textFontFamily,
+    fontSize: 22
   },
   headerMiniStyle: {
     fontSize: 20

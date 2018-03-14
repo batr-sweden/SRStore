@@ -1,12 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Button, SimpleCheck } from '../common';
+import { Button, SimpleCheck, CreateCheck } from '../common';
 
 const Check = (props) => {
   const { buttonStyle } = styles;
 
   return (
-    <View>
+    <View style={styles.parentStyle}>
       <SimpleCheck
         value={props.value}
         description={props.description}
@@ -24,15 +24,7 @@ const Check = (props) => {
 
 const styles = {
   parentStyle: {
-    borderRadius: 5,
-    backgroundColor: '#fff',
-    padding: 5,
-    flexDirection: 'row',
-    height: 150,
     width: 300,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2
   },
   textValueStyle: {
     color: '#e74c3c',

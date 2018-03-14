@@ -94,9 +94,7 @@ _onPressAction = (rowItem) => {
    return (
      <View style={homeStyle.parentContainer}>
       <Header
-        searchContainer={{ display: 'flex' }}
-        sortStyle={{ display: 'flex' }}
-        sortExpand={{ display: this.state.display }}
+        headerText='utdelning'
         onPress={() => this.props.navigation.navigate('createCheck')}
       />
       <StatusBar

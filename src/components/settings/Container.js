@@ -2,13 +2,22 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Modal, Text, ScrollView, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import Dash from 'react-native-dash';
-import { Icon } from 'react-native-elements';
-import { AppButton, Header, Button } from '../common';
-import { primaryColor } from '../../config';
+import { Icon, List, ListItem } from 'react-native-elements';
+import { Header, Logo } from '../common';
 import { fetchFAQ, signOutUser } from '../../redux/actions';
 import { styles } from './style';
-import { CompanyInfo, FAQ, Checks, ContactUs, TermsCondition, UserSettings } from './Components';
+import {
+  CompanyInfo,
+  FAQ,
+  Checks,
+  ContactUs,
+  TermsCondition,
+  UserSettings,
+  accountList,
+  supportList,
+  termsList,
+  moreList } from './Components';
+
 
 class Settings extends Component {
   state = {
@@ -31,76 +40,90 @@ class Settings extends Component {
     return (
       <View style={viewContainer}>
         <Header
-          textStyle={{ display: 'flex' }}
-          headerText='Inställningar'
-          componentTextStyle={styles.headerText}
+          headerText='Alternativ'
         />
         <ScrollView>
         <View contentContainerStyle={scrollContainer}>
-          <Text style={sectionContainer.header}>
-            Ditt konto
-          </Text>
-          <View style={sectionContainer.msgContainer}>
-            <Section
-              onPress={(e) => this._showModal('compInfo', e)}
-              text='Företags information'
-            />
-            <Section
-              onPress={(e) => this._showModal('UserSettings', e)}
-              text='Ändra inställningar'
-            />
-            <Section
-              onPress={(e) => this._showModal('Check', e)}
-              text='Mina checker'
-            />
-          </View>
-          <Dashed />
-        </View>
-
-        <View contentContainerStyle={scrollContainer}>
-          <Text style={sectionContainer.header}>
-            Support
-          </Text>
-
-          <View style={sectionContainer.msgContainer}>
-            <Section
-              onPress={(e) => this._showModal('contact', e)}
-              text='Kontakta oss'
-            />
-
-            <Section
-              onPress={(e) => this._showModal('FAQ', e)}
-              text='FAQ'
-            />
-
-            <Section
-              text='App version: 0.01'
-            />
-          </View>
-          <Dashed />
-        </View>
-
-        <View contentContainerStyle={scrollContainer}>
-          <Text style={sectionContainer.header}>
-            Användarvilkor
-          </Text>
-          <View style={sectionContainer.msgContainer}>
-            <Section
-              onPress={(e) => this._showModal('terms', e)}
-              text='Terms & Policy'
-            />
-          </View>
-          <Dashed />
-        </View>
-
-        <Button
-          buttonContainerStyle={{ margin: 10 }}
-          onPress={this.signOut}
-          text='Logga ut'
+        <Logo
+          headerText='Mitt konto'
+          containerStyle={sectionContainer.h1Container}
+          headerStyle={sectionContainer.h1TextStyle}
         />
-        <StatusBar
-          barStyle="dark-content"
+          <List>
+          {
+            accountList.map((item, i) => (
+              <ListItem
+              key={i}
+              title={item.title}
+              leftIcon={{ color: item.color, name: item.icon, type: item.type }}
+              onPress={(e) => this._showModal(item.navigate, e)}
+              />
+            ))
+          }
+        </List>
+        </View>
+        <View contentContainerStyle={scrollContainer}>
+        <Logo
+          headerText='Support'
+          containerStyle={sectionContainer.h1Container}
+          headerStyle={sectionContainer.h1TextStyle}
         />
+          <List>
+          {
+            supportList.map((item, i) => (
+              <ListItem
+              key={i}
+              title={item.title}
+              leftIcon={{ name: item.icon, type: item.type }}
+              onPress={(e) => this._showModal(item.navigate, e)}
+              />
+            ))
+          }
+        </List>
+        </View>
+        <View contentContainerStyle={scrollContainer}>
+          <Logo
+            headerText='Användarvillkor'
+            containerStyle={sectionContainer.h1Container}
+            headerStyle={sectionContainer.h1TextStyle}
+          />
+          <List>
+          {
+            termsList.map((item, i) => (
+              <ListItem
+              key={i}
+              title={item.title}
+              leftIcon={{ name: item.icon, type: item.type }}
+              onPress={(e) => this._showModal(item.navigate, e)}
+              />
+            ))
+          }
+        </List>
+        </View>
+        <View contentContainerStyle={scrollContainer}>
+        <Logo
+          headerText='Mer'
+          containerStyle={sectionContainer.h1Container}
+          headerStyle={sectionContainer.h1TextStyle}
+        />
+          <List>
+          {
+            moreList.map((item, i) => (
+              <ListItem
+              key={i}
+              title={item.title}
+              leftIcon={{ color: item.color, name: item.icon, type: item.type }}
+              onPress={(e) => this._showModal(item.navigate, e)}
+              />
+            ))
+          }
+          <ListItem
+            title={'Logga ut'}
+            leftIcon={{ name: 'logout', type: 'material-community' }}
+            onPress={this.signOut}
+          />
+        </List>
+        </View>
         <Modal
           visible={this.state.isModalVisible}
           animationType={"slide"}
@@ -136,27 +159,6 @@ class Settings extends Component {
     );
   }
 }
-
-const Section = ({ text, onPress }) => {
-  const { sectionStyle } = styles;
-
-  return (
-    <View>
-      <Dashed />
-      <View style={sectionStyle.textContainer}>
-        <AppButton
-          text={text}
-          onPress={onPress}
-          componentButtonStyle={sectionStyle.btnStyle}
-          componentTextStyle={sectionStyle.btnTxt}
-        />
-      </View>
-    </View>
-  );
-};
-
-const Dashed = () =>
-  <Dash dashColor={primaryColor} dashThickness={1} dashLength={3} />;
 
 const mapStateToProps = ({ user }) => {
   const store = user.info;

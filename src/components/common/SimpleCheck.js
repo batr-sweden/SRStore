@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import QRCode from 'react-native-qrcode';
+import { subHeaderFontFamily, secondaryColor } from '../../config';
 
 const SimpleCheck = props => {
   const {
@@ -16,39 +17,95 @@ const SimpleCheck = props => {
   } = styles;
 
   return (
-    <View style={[containerStyle, props.containerStyle]}>
-      <View style={parentStyle}>
-        <View style={qrContainer}>
-          <QRCode
-            value={props.checkID}
-            size={100}
-            bgColor='black'
-            fgColor='white'
-          />
-        </View>
-        <View style={inputContainer}>
-          <View style={checkInformationContainer}>
-            <Text style={[checkValueStyle, checkInformation]}>
-              {props.value}
-            </Text>
-          </View>
-          <View style={checkInformationContainer}>
-            <Text style={[checkInformation]}>
-              {props.description}
-            </Text>
-          </View>
-          <View style={checkInformationContainer}>
-            <Text style={[checkExpireStyle, checkInformation]}>
-              Giltlig t.o.m: {props.expire}
-            </Text>
-          </View>
-        </View>
-      </View>
-      <View style={footer}>
-        <Text>
-          {props.checkID}
-        </Text>
-      </View>
+    <View style={parentStyle}>
+    <View style={{ position: 'absolute', top: 10, right: 10, }}>
+    <QRCode
+      value={props.checkID}
+      size={30}
+      bgColor='black'
+      fgColor='white'
+    />
+    </View>
+     <View
+     style={{
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    }}>
+     <Text
+     adjustsFontSizeToFit
+     numberOfLines={1}
+     minimumFontScale={0.01}
+     style={{
+      textAlign: 'center',
+      color: secondaryColor,
+      backgroundColor: 'transparent',
+      fontSize: 30,
+      height: '20%',
+       width: 140,
+       fontFamily: subHeaderFontFamily,
+       transform: [{ rotate: '90deg' }] }}>
+       HEY DAY</Text>
+     </View>
+     <View style={{ flex: 10 }}>
+     <View style={{ marginLeft: 40, marginRight: 40, flex: 7 }}>
+     <Text
+     adjustsFontSizeToFit
+     // numberOfLines={1}
+     minimumFontScale={0.01}
+     style={{
+       backgroundColor: 'transparent',
+       color: '#e74c3c',
+       textAlign: 'center',
+       fontSize: 50,
+       flex: 1,
+       width: '100%',
+       fontFamily: subHeaderFontFamily
+     }}
+      >
+     {props.value}</Text>
+     </View>
+     <View style={{ marginLeft: 20, marginRight: 20, alignItems: 'center', flex: 4.5 }}>
+     <Text
+     numberOfLines={2}
+     style={{
+       textAlign: 'center',
+       lineHeight: 20,
+       color: '#2d2c2c',
+       backgroundColor: 'transparent',
+       fontSize: 20,
+       fontFamily: subHeaderFontFamily
+     }}>
+     {props.description}</Text>
+     </View>
+     <View style={{ marginLeft: 20, marginRight: 20, alignItems: 'center', flex: 2 }}>
+     <Text
+     style={{
+       textAlign: 'center',
+       color: '#2d2c2c',
+       backgroundColor: 'transparent',
+       fontSize: 15,
+       fontFamily: subHeaderFontFamily
+     }}>
+     Giltlig tom {props.expire}</Text>
+     </View>
+     <View style={{ marginLeft: 10, marginRight: 10, flex: 2 }}>
+     <Text
+     adjustsFontSizeToFit
+     // numberOfLines={1}
+     // minimumFontScale={0.01}
+     style={{
+       // textAlign: 'center',
+       color: '#2d2c2c',
+       backgroundColor: 'transparent',
+       fontSize: 100,
+       width: '100%',
+      flex: 1,
+       fontFamily: subHeaderFontFamily
+     }}>
+     Du samlar dina poängen endast vid köp i butiken, gäller ej kaféet</Text>
+     </View>
+    </View>
     </View>
   );
 };
@@ -71,9 +128,15 @@ const styles = {
     elevation: 2
   },
   parentStyle: {
+    borderRadius: 5,
+    backgroundColor: '#fff',
+    padding: 5,
     flexDirection: 'row',
-    height: 100,
-    marginBottom: 10
+    height: 160,
+    shadowColor: '#449faa',
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 8,
+    shadowOpacity: 0.8
   },
   checkInformationText: {
     color: '#000',

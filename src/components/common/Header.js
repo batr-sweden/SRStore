@@ -1,6 +1,7 @@
 import React from 'react';
-import { Icon } from 'react-native-elements';
+import { Icon, Divider } from 'react-native-elements';
 import { Text, View, TouchableOpacity } from 'react-native';
+import { Logo } from './Logo';
 import { primaryColor } from '../../config';
 
 // Make a component
@@ -13,31 +14,36 @@ const Header = (props) => {
     contentContainer,
     viewContainer } = styles;
   return (
-    <View style={parentViewContainer}>
-      <View style={viewContainer}>
-        <View style={contentContainer}>
-          <View style={[searchContainer, props.searchContainer]}>
-            <Icon
-              name='search'
-              type='evilicon'
-              size={35}
-              color={primaryColor}s
-            />
-          </View>
-          <Text style={[textStyle, props.textStyle]}>{props.headerText}</Text>
-          <View style={[sortStyle, props.sortStyle]}>
-            <TouchableOpacity onPress={props.onPress}>
-              <Icon
-                name='plus'
-                type='evilicon'
-                size={35}
-                color={primaryColor}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    </View>
+  <View>
+  <View style={{ backgroundColor: '#fff', paddingTop: 10, height: 75, flexDirection: 'row' }}>
+  <View style={{ marginLeft: 3, flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+  <Icon
+  raised
+  name='menu'
+  type='simple-line-icon'
+  size={18}
+  color='#f50'
+  onPress={() => console.log('hello')} />
+  </View>
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+  <Logo
+    headerText={props.headerText.toUpperCase()}
+  />
+  </View>
+  <View style={{ marginRight: 3, flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
+  <Icon
+  raised
+  name='plus'
+  type='simple-line-icon'
+  size={18}
+  color='#f50'
+  onPress={props.onPress}
+  />
+  </View>
+  </View>
+  <Divider style={{ backgroundColor: '#E0E0E0', marginLeft: 10, marginRight: 10 }} />
+  </View>
+
   );
 };
 
