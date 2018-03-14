@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser, formChanges } from '../../redux/actions';
+import { emailChanged, passwordChanged, loginUser, formChanges } from '../../redux/AuthReducer';
 import { Spinner, Input, Button, CardSection } from '../common';
 import { authStyles } from './styles';
 import { boxShadow } from '../../styles';

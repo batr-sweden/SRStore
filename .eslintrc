@@ -7,5 +7,7 @@
     "eol-last": 0,
     "no-underscore-dangle": 0,
     "import/no-unresolved": 0,
+    "max-len": 0,
+    "prefer-template": 0,
   }
 }

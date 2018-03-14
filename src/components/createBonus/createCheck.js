@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, FlatList } from 'react-native';
-import { checkFetch } from '../../redux/actions';
+import { checkFetch } from '../../redux/CheckReducer';
 import { CreateCheck, Check, Spinner } from '../common';
 import bonusStyle from './styles';
 
@@ -71,14 +71,17 @@ class createCheck extends Component {
         <CreateCheck
           onChangeCheckValue={(value) => {
            const item = Object.assign({}, this.state.item, { value });
+           console.log(item);
            this.setState({ item });
          }}
           onChangeCheckDescription={(description) => {
            const item = Object.assign({}, this.state.item, { description });
+           console.log(item);
            this.setState({ item });
          }}
           onChangeCheckExpire={(expire) => {
            const item = Object.assign({}, this.state.item, { expire });
+           console.log(item);
            this.setState({ item });
          }}
           source={require('../../images/qrcode-static.png')}

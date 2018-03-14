@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import { config } from './src/services';
-import reducers from './src/redux/reducers';
+import reducers from './src/redux';
 import Index from './src/index';
 
 const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));

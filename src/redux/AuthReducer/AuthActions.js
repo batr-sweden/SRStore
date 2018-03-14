@@ -1,64 +1,50 @@
 import firebase from 'firebase';
-import {
-  EMAIL_CHANGED,
-  CONTACT_CHANGED,
-  STORENAME_CHANGED,
-  PASSWORD_CHANGED,
-  PHONE_CHANGED,
-  RE_PASSWORD_CHANGED,
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL,
-  LOGIN_USER_START,
-  PASSWORD_CHECK,
-  ANNONIMOUS_ACTION,
-  USER_SIGN_OUT,
-  SIGNIN_SIGNUP
-  } from './types';
+import * as types from './types';
 
 export const contactChange = (text) => {
   return {
-    type: CONTACT_CHANGED,
+    type: types.CONTACT_CHANGED,
     payload: text
   };
 };
 
 export const formChanges = (text) => {
   return {
-    type: SIGNIN_SIGNUP,
+    type: types.SIGNIN_SIGNUP,
     payload: text
   };
 };
 
 export const emailChanged = (text) => {
   return {
-    type: EMAIL_CHANGED,
+    type: types.EMAIL_CHANGED,
     payload: text
   };
 };
 
 export const pageNav = () => {
   return {
-    type: ANNONIMOUS_ACTION
+    type: types.ANNONIMOUS_ACTION
   };
 };
 
 export const phoneChanged = (text) => {
   return {
-    type: PHONE_CHANGED,
+    type: types.PHONE_CHANGED,
     payload: text
   };
 };
 
 export const passwordChanged = (text) => {
   return {
-    type: PASSWORD_CHANGED,
+    type: types.PASSWORD_CHANGED,
     payload: text
   };
 };
 
 export const rePasswordChanged = (text) => {
   return {
-    type: RE_PASSWORD_CHANGED,
+    type: types.RE_PASSWORD_CHANGED,
     payload: text
   };
 };
@@ -68,7 +54,7 @@ export const signOutUser = () => {
     firebase.auth().signOut()
       .then(() => {
         dispatch({
-          type: USER_SIGN_OUT
+          type: types.USER_SIGN_OUT
         });
       });
   };
@@ -76,7 +62,7 @@ export const signOutUser = () => {
 
 export const storeNameChange = (text) => {
   return {
-    type: STORENAME_CHANGED,
+    type: types.STORENAME_CHANGED,
     payload: text
   };
 };
@@ -96,7 +82,7 @@ export const passwordCheck = ({ storeName, contactName, phone, email, password, 
     text = 'Password missing';
   } else if (password === rePassword) {
     return (dispatch) => {
-      dispatch({ type: LOGIN_USER_START });
+      dispatch({ type: types.LOGIN_USER_START });
 
       firebase.auth().createUserWithEmailAndPassword(email, rePassword)
         .then(user => {
@@ -136,7 +122,7 @@ export const passwordCheck = ({ storeName, contactName, phone, email, password, 
           firebase.database().ref(`/Stores/${user.uid}`).set(info)
           .then(() => {
              dispatch({
-               type: LOGIN_USER_SUCCESS,
+               type: types.LOGIN_USER_SUCCESS,
                payload: 'success'
              });
           })
@@ -153,14 +139,14 @@ export const passwordCheck = ({ storeName, contactName, phone, email, password, 
   }
 
   return {
-    type: PASSWORD_CHECK,
+    type: types.PASSWORD_CHECK,
     payload: text
   };
 };
 
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
-    dispatch({ type: LOGIN_USER_START });
+    dispatch({ type: types.LOGIN_USER_START });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
@@ -173,14 +159,14 @@ export const loginUser = ({ email, password }) => {
 
 const loginUserFail = (dispatch, error) => {
   dispatch({
-    type: LOGIN_USER_FAIL,
+    type: types.LOGIN_USER_FAIL,
     payload: error
    });
 };
 
 const loginUserSuccess = (dispatch, user) => {
   dispatch({
-    type: LOGIN_USER_SUCCESS,
+    type: types.LOGIN_USER_SUCCESS,
     payload: user
   });
 };

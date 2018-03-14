@@ -6,7 +6,8 @@ import Dash from 'react-native-dash';
 import { Icon } from 'react-native-elements';
 import { AppButton, Header, Button } from '../common';
 import { primaryColor } from '../../config';
-import { fetchFAQ, signOutUser } from '../../redux/actions';
+import { signOutUser } from '../../redux/AuthReducer';
+import { fetchFAQ } from '../../redux/UserReducer';
 import { styles } from './style';
 import { CompanyInfo, FAQ, Checks, ContactUs, TermsCondition, UserSettings } from './Components';
 

@@ -1,18 +1,4 @@
-import {
-  EMAIL_CHANGED,
-  CONTACT_CHANGED,
-  STORENAME_CHANGED,
-  PASSWORD_CHANGED,
-  PHONE_CHANGED,
-  RE_PASSWORD_CHANGED,
-  LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL,
-  LOGIN_USER_START,
-  PASSWORD_CHECK,
-  ANNONIMOUS_ACTION,
-  USER_SIGN_OUT,
-  SIGNIN_SIGNUP
- } from '../actions/types';
+import * as types from './types';
 
  const INITIAL_STATE = {
   email: '',
@@ -29,36 +15,36 @@ import {
 export default (state = INITIAL_STATE, action) => {
   console.log(action);
   switch (action.type) {
-    case EMAIL_CHANGED:
+    case types.EMAIL_CHANGED:
       return { ...state, email: action.payload, error: '' };
-    case CONTACT_CHANGED:
+    case types.CONTACT_CHANGED:
       return { ...state, contactName: action.payload, error: '' };
-    case STORENAME_CHANGED:
+    case types.STORENAME_CHANGED:
       return { ...state, storeName: action.payload, error: '' };
-    case PASSWORD_CHANGED:
+    case types.PASSWORD_CHANGED:
       return { ...state, password: action.payload, error: '' };
-    case RE_PASSWORD_CHANGED:
+    case types.RE_PASSWORD_CHANGED:
       return { ...state, rePassword: action.payload, error: '' };
-    case PHONE_CHANGED:
+    case types.PHONE_CHANGED:
       return { ...state, phone: action.payload, error: '' };
-    case LOGIN_USER_START:
+    case types.LOGIN_USER_START:
       return { ...state, loading: true, error: '' };
-    case LOGIN_USER_SUCCESS:
+    case types.LOGIN_USER_SUCCESS:
       return { ...state, ...INITIAL_STATE, user: action.payload };
-    case LOGIN_USER_FAIL:
+    case types.LOGIN_USER_FAIL:
       return {
         ...state, error: action.payload.message, password: '', rePassword: '', loading: false
       };
-    case PASSWORD_CHECK:
+    case types.PASSWORD_CHECK:
       return {
         ...state, error: action.payload, password: '', rePassword: '', loading: false
       };
-    case SIGNIN_SIGNUP:
+    case types.SIGNIN_SIGNUP:
       return { ...state, ...INITIAL_STATE, signUp: action.payload
       };
-    case ANNONIMOUS_ACTION:
+    case types.ANNONIMOUS_ACTION:
       return { ...state, ...INITIAL_STATE };
-    case USER_SIGN_OUT:
+    case types.USER_SIGN_OUT:
         //Set all states back to initial when user signs out
         return { ...state, ...INITIAL_STATE };
     default:

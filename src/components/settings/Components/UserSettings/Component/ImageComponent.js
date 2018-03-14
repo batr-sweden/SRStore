@@ -38,7 +38,7 @@ export const ImageComponent = (props) => {
           </Text>
           <View style={[styles.editDescContainer, props.edit]}>
             <Input
-              value={props.value}
+              value={props.storeDescription}
               onChangeText={props.onChangeText}
               multiline
               editable

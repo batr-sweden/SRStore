@@ -10,7 +10,7 @@ import {
   contactChange,
   storeNameChange,
   formChanges
-} from '../../redux/actions';
+} from '../../redux/AuthReducer';
 import { AppButton, Card, CardSection, Input, Spinner } from '../common';
 import { authStyles } from './styles';
 

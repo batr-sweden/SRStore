@@ -1,4 +1,4 @@
-import { CHECK_FETCH, DELETE_BTN } from '../actions/types';
+import * as types from './types';
 
 const INITIAL_STATE = {
   check: null,
@@ -7,9 +7,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CHECK_FETCH:
+    case types.CHECK_FETCH:
       return { ...state, loading: false, check: action.payload };
-    case DELETE_BTN:
+    case types.DELETE_BTN:
       return { ...state, ...INITIAL_STATE };
     default:
       return state;

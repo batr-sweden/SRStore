@@ -1,8 +1,4 @@
-import {
-  USER_FETCH,
-  BONUS_STAMP,
-  FAQ_FETCH
-} from '../actions/types';
+import * as types from './types';
 
 const INITIAL_STATE = {
   faq: null,
@@ -13,15 +9,15 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case USER_FETCH:
+    case types.USER_FETCH:
       return {
         ...state,
         loading: false,
         logic: action.payload.logic.rewardBtns,
         info: action.payload.info };
-    case FAQ_FETCH:
+    case types.FAQ_FETCH:
       return { ...state, faq: action.payload };
-    case BONUS_STAMP:
+    case types.BONUS_STAMP:
       return { ...state, btnOrStamp: action.payload };
     default:
       return state;

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { LayoutAnimation, View, FlatList, Alert, StatusBar } from 'react-native';
-import { fetchUser, deleteBtn } from '../../redux/actions';
+import { fetchUser, deleteBtn } from '../../redux/UserReducer';
 import { Header, RewardButton, Spinner } from '../common';
 import homeStyle from './styles';
 import { CustomLayoutSpring } from './Component';
