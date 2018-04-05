@@ -1,3 +1,11 @@
+export const FAQ_FETCH = 'FAQ_FETCH';
 export const USER_FETCH = 'USER_FETCH';
 export const BONUS_STAMP = 'BONUS_STAMP';
-export const FAQ_FETCH = 'FAQ_FETCH';
+export const TOGGLE_OPEN = 'TOGGLE_OPEN';
+export const TOGGLE_FORM = 'TOGGLE_FORM';
+export const SET_OPEN_HOUR = 'SET_OPEN_HOUR';
+export const UPDATE_STORE_INFO = 'UPDATE_STORE_INFO';
+export const TOGGLE_DATE_MODAL = 'TOGGLE_DATE_MODAL';
+export const USER_INFO_CHANGED = 'USER_INFO_CHANGED';
+export const UPDATE_SOCIAL_ICON = 'UPDATE_SOCIAL_ICON';
+export const UPDATE_GPS_LOCATION = 'UPDATE_GPS_LOCATION';

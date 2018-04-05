@@ -6,5 +6,5 @@ import UserReducer from './UserReducer';
 export default combineReducers({
   auth: AuthReducer,
   checks: CheckReducer,
-  user: UserReducer
+  user: UserReducer,
 });

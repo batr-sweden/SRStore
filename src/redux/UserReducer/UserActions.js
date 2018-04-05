@@ -34,3 +34,70 @@ export const fetchFAQ = () => {
     });
   };
 };
+
+export const userInfoChanged = (objArr, id, newData) => {
+  const dataToMutate = objArr.map(obj => {
+    if (obj.id === id) {
+      return Object.assign({}, obj, newData);
+    }
+    return obj;
+  });
+  return {
+    type: types.USER_INFO_CHANGED,
+    payload: dataToMutate
+  };
+};
+
+// Store open hours
+export const toggleDateModal = (title, start, end, type) => {
+  const time = { title, start, end, type };
+  return {
+    type: types.TOGGLE_DATE_MODAL,
+    payload: time
+  };
+};
+
+export const updateOpenHour = (val, hour) => {
+  const toSet = { val, hour };
+  return {
+    type: types.SET_OPEN_HOUR,
+    payload: toSet
+  };
+};
+
+export const toggleOpen = (id, type) => {
+  const openToToggle = { id, type };
+  return {
+    type: types.TOGGLE_OPEN,
+    payload: openToToggle
+  };
+};
+
+export const toggleForm = (formType, val) => {
+  const fields = { formType, val };
+  return {
+    type: types.TOGGLE_FORM,
+    payload: fields
+  };
+};
+
+export const updateStoreInfo = (info) => {
+  return {
+    type: types.UPDATE_STORE_INFO,
+    payload: info
+  };
+};
+
+export const updateGpsLocation = (position) => {
+  return {
+    type: types.UPDATE_GPS_LOCATION,
+    payload: position
+  };
+};
+
+export const updateSocialIcon = (iconType) => {
+  return {
+    type: types.UPDATE_SOCIAL_ICON,
+    payload: iconType
+  };
+};

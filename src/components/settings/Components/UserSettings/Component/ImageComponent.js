@@ -1,56 +1,54 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, ImageBackground, Image } from 'react-native';
-import { Input } from '../../../../common';
-import { styles } from '../Styles';
-import { image } from './Styles';
+import { Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { TextField } from 'react-native-material-textfield';
+import { Card, Icon } from 'react-native-elements';
 
 export const ImageComponent = (props) => {
   return (
-    <ImageBackground
-     style={styles.imgBackground}
-     source={{ uri: props.backgroundImg }}
+    <Card
+      containerStyle={styles.containerStyle}
+      image={{ uri: props.backgroundImg }}
+      wrapperStyle={{ paddingVertical: 0 }}
+      imageStyle={{ height: 200 }}
     >
-      <View style={{ flex: 1 }}>
-        <Image
-         style={styles.img}
-         source={{ uri: props.logo }}
-        />
-        <TouchableOpacity style={[styles.editLogoContainer, props.edit]}>
-          <Text style={styles.editTextLogo}>
-            Ladda upp logga
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={[styles.editBGAlign, props.edit]}>
-        <TouchableOpacity style={styles.editBGContainer}>
-          <Text style={styles.editTextBG}>
-            Ladda upp bakgroundsbild
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.descAlign} >
-        <View style={styles.descContainer}>
-          <Text style={styles.headerText}>
-            {props.storeName}
-          </Text>
-          <Text style={[styles.subText, props.hide]}>
-            {props.storeDescription}
-          </Text>
-          <View style={[styles.editDescContainer, props.edit]}>
-            <Input
-              value={props.storeDescription}
-              onChangeText={props.onChangeText}
-              multiline
-              editable
-              numberOfLines={2}
-              placeholderTextColor={'#000'}
-              componentInputStyle={{ fontSize: 14, flex: 0 }}
-              componentContainerStyle={image.inputStyle}
-              placeholder={props.storeDescription}
-            />
-          </View>
-        </View>
-      </View>
-    </ImageBackground>
+      <Image
+       style={styles.img}
+       source={{ uri: props.logo }}
+      />
+      <Text style={{ fontSize: 20, bottom: -10 }}>
+        {props.storeName}
+      </Text>
+      <TextField
+        multiline
+        editable={props.updateForm.img_sec}
+        inputContainerStyle={styles.textfield}
+        label='Mini Advert'
+        value={props.storeDescription}
+        characterRestriction={140}
+      />
+      <TouchableOpacity
+        style={{ flexDirection: 'row', justifyContent: 'flex-end' }}
+        onPress={() => props.toggleForm('img_sec', props.updateForm.img_sec)}
+      >
+        <Icon color='#517fa4' type='evilicon' name='pencil' size={32} />
+      </TouchableOpacity>
+    </Card>
   );
 };
+
+export const styles = StyleSheet.create({
+  containerStyle: {
+    margin: 0,
+    borderWidth: 0
+  },
+  img: {
+    width: 50,
+    height: 50,
+    margin: 5,
+    borderRadius: 10,
+    alignSelf: 'flex-start',
+    top: -200,
+    position: 'absolute',
+    zIndex: 1
+  }
+});

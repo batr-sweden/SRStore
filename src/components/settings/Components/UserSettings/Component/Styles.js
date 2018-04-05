@@ -93,19 +93,10 @@ export const about = StyleSheet.create({
     },
 });
 
-export const image = StyleSheet.create({
-  inputStyle: {
-    height: 43,
-    borderWidth: 2,
-    borderColor: '#449faa',
-    backgroundColor: '#FFF',
-  }
-});
-
 export const location = StyleSheet.create({
 
 });
 
 export const social = StyleSheet.create({
-  
+
 });

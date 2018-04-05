@@ -13,7 +13,6 @@ import * as types from './types';
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
     case types.EMAIL_CHANGED:
       return { ...state, email: action.payload, error: '' };
