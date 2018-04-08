@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Button, SimpleCheck, CreateCheck } from '../common';
+import { Button, SimpleCheck } from '../common';
 
 const Check = (props) => {
   const { buttonStyle } = styles;
@@ -8,9 +8,11 @@ const Check = (props) => {
   return (
     <View style={styles.parentStyle}>
       <SimpleCheck
+        name={props.name}
         value={props.value}
         description={props.description}
         expire={props.expire}
+        info={props.info}
         checkID={props.checkID}
       />
       <Button
@@ -26,41 +28,9 @@ const styles = {
   parentStyle: {
     width: 300,
   },
-  textValueStyle: {
-    color: '#e74c3c',
-    fontWeight: 'bold',
-    fontSize: 33,
-    marginLeft: 3
-  },
-  textValueContainer: {
-    backgroundColor: 'transparent', marginTop: 0, margin: 3, height: 50
-  },
-  textDescStyle: {
-    color: '#000',
-    marginLeft: 3,
-  },
-  textDescContainer: {
-    backgroundColor: 'transparent', margin: 3, height: 40
-  },
-  textExpireStyle: {
-    color: '#000',
-    marginLeft: 3,
-  },
-  textExpireContainer: {
-    backgroundColor: 'transparent', margin: 3, height: 23
-  },
-  qrContainer: {
-    margin: 5,
-    flex: 3
-  },
-  imageStyle: {
-    height: 130, width: 130
-  },
-  inputContainer: {
-    flex: 5
-  },
   buttonStyle: {
-    flex: 0, marginTop: 5
+    flex: 0,
+    marginTop: 5
   }
 };
 

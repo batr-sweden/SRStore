@@ -1,10 +1,11 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Modal, Text, ScrollView, View, StatusBar } from 'react-native';
+import { Modal, ScrollView, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon, List, ListItem } from 'react-native-elements';
 import { Header, Logo } from '../common';
-import { fetchFAQ, signOutUser } from '../../redux/actions';
+import { signOutUser } from '../../redux/AuthReducer';
+import { fetchFAQ } from '../../redux/UserReducer';
 import { styles } from './style';
 import {
   CompanyInfo,

@@ -83,6 +83,7 @@ const bonusStyle = {
       marginRight: 3,
       borderWidth: 1,
       flex: 1,
+      width: 71.5
     },
     colorContainer: {
       alignItems: 'center',

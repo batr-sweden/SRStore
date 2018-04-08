@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, ScrollView } from 'react-native';
+import {
+  checkValueChange,
+  btnNameChange,
+  btnValueChange,
+  btnNoteChange,
+  createCheck,
+  colorChoosen,
+  iconChoosen,
+} from '../../redux/CheckReducer';
 import { SimpleCheck, Button } from '../common';
 import { InputValue, ChooseIcon, ChooseColor } from './Component';
 import bonusStyle from './styles';
 
-//Create Button Component
 class addBtn extends Component {
   state = {
     selectedItem: 'null',
@@ -43,12 +52,31 @@ class addBtn extends Component {
   ]
   }
 
-  _selectedIcon = (id) => {
+  onChangeValue(text) {
+    this.props.checkValueChange(text);
+  }
+  onChangeBtnName(text) {
+    this.props.btnNameChange(text);
+  }
+  onChangeBtnPoint(text) {
+    this.props.btnValueChange(text);
+  }
+  onChangeBtnNote(text) {
+    this.props.btnNoteChange(text);
+  }
+  onChangeCoolor(text) {
+    this.props.coolorChoosen(text);
+  }
+  onChangeIcon(text) {
+    this.props.iconChoosen(text);
+  }
+
+  _selectedIcon = (name) => {
     const newState = this.state.icons.map(obj => {
       if (obj.selected) {
         return Object.assign({}, obj, { selected: !obj.selected });
       }
-      if (obj.id === id) {
+      if (obj.name === name) {
         return Object.assign({}, obj, { selected: !obj.selected });
       }
       return obj;
@@ -59,12 +87,12 @@ class addBtn extends Component {
     //  console.log(`Rendered item - ${id} for ${isSelectedUser}`);
   };
 
-  _selectedColor = (id) => {
+  _selectedColor = (color) => {
     const newState = this.state.colors.map(obj => {
       if (obj.selected) {
         return Object.assign({}, obj, { selected: !obj.selected });
       }
-      if (obj.id === id) {
+      if (obj.color === color) {
         return Object.assign({}, obj, { selected: !obj.selected });
       }
       return obj;
@@ -79,20 +107,44 @@ class addBtn extends Component {
     const props = this.props.navigation.state.params;
     return (
     <SimpleCheck
+      fontSize={40}
       source={require('../../images/qrcode-static.png')}
-      value={props.item.value}
-      description={props.item.description}
-      expire={props.item.expire}
+      name={props.item.checkOffer}
+      description={props.item.checkDesc}
+      expire={props.item.checkExpire}
+      info={props.item.checkInfo}
       parentStyle={bonusStyle.addBtnStyle.checkStyle}
       buttonStyle={bonusStyle.addBtnStyle.displayCheckBtn}
     />
   );
   }
+  _createCheck = () => {
+    const {
+    checkDesc,
+    checkExpire,
+    checkInfo,
+    checkOffer,
+    checkValue,
+    btnValue,
+    btnNote,
+    btnName,
+    btnPoint } = this.props;
+    this.props.createCheck({
+    checkDesc,
+    checkExpire,
+    checkInfo,
+    checkOffer,
+    checkValue,
+    btnValue,
+    btnNote,
+    btnName,
+    btnPoint });
+  }
   _checkValue = () => {
     const props = this.props.navigation.state.params;
-    if (props.item.value) {
+    if (props.item.checkValue) {
       return (
-        props.item.value
+        props.item.checkValue.toString()
       );
     } return;
   }
@@ -101,53 +153,76 @@ class addBtn extends Component {
     return (
       <View style={bonusStyle.addBtnStyle.viewContainer}>
         <ScrollView>
-        <View style={{ marginLeft: 10, marginRight: 10 }}>
+        <View style={{ marginTop: 10, marginLeft: 10, marginRight: 10 }}>
           {this._renderCheck()}
           </View>
           <InputValue
             sectionName='Poäng för att uppnå check'
             sectionNumner='1'
             autoFocus
-            onChangeText={(text) => console.log(text)}
+            onChangeText={this.onChangeValue.bind(this)}
             value={this._checkValue()}
           />
           <InputValue
             sectionName='Poäng tillgodo vid köp'
             sectionNumner='2'
-            onChangeText={(text) => console.log(text)}
+            onChangeText={this.onChangeBtnPoint.bind(this)}
           />
           <InputValue
             sectionName='Namnge knappen'
             sectionNumner='3'
-            onChangeText={(text) => console.log(text)}
+            onChangeText={this.onChangeBtnName.bind(this)}
           />
           <ChooseIcon
-            onPress={(id) => this._selectedIcon(id)}
-            sectionName='Kategori'
-            sectionNumner='4'
-            color={this.state.icons}
+            onPress={(name) => this._selectedIcon(name)}
             icons={this.state.icons}
           />
           <ChooseColor
             sectionName='Färg'
             sectionNumner='5'
-            onPress={(id) => this._selectedColor(id)}
+            onPress={(color) => this._selectedColor(color)}
             colors={this.state.colors}
-
           />
           <InputValue
             sectionName='Notering'
             sectionNumner='6'
+            onChangeText={this.onChangeBtnNote.bind(this)}
           />
           <Button
             buttonContainerStyle={bonusStyle.addBtnStyle.btnStyle}
             text='Skapa'
-            onPress={() => console.log('CreateBtn')}
+            onPress={() => this._createCheck()}
           />
         </ScrollView>
       </View>
     );
   }
 }
+const mapStateToProps = ({ checks, user }) => {
+  const btnSettings = user.btnSettings;
+  const { checkDesc, checkExpire, checkInfo, checkOffer, checkValue, iconName, btnValue, icon, coolor, btnNote, btnName } = checks;
 
-export default addBtn;
+  return {
+    checkDesc,
+    checkExpire,
+    checkInfo,
+    checkOffer,
+    checkValue,
+    iconName,
+    icon,
+    coolor,
+    btnSettings,
+    btnNote,
+    btnValue,
+    btnName,
+   };
+};
+export default connect(mapStateToProps, {
+  createCheck,
+  iconChoosen,
+  colorChoosen,
+  checkValueChange,
+  btnNameChange,
+  btnValueChange,
+  btnNoteChange
+})(addBtn);

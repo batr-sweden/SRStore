@@ -1,39 +1,10 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import firebase from 'firebase';
-import { NotAuthenticated, Authenticated } from '../router';
+import LoginScreen from './auth/LoginScreen';
+import SignUp from './auth/SignUp';
+import HomeScreen from './home';
+import Settings from './settings';
+import createCheck from './createBonus/createCheck';
+import addBtn from './createBonus/addBtn';
+import More from './more/More';
+import UserSettings from './settings/Components/UserSettings';
 
-// CHECK IF THE USER IS / WAS LOGGED IN OR NOT
-class Index extends Component {
-  state = { loggedIn: false };
-
-  componentWillMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({ loggedIn: true });
-      } else {
-        this.setState({ loggedIn: false });
-      }
-    });
-  }
-
-  renderContent() {
-    if (this.state.loggedIn) {
-      return (
-        <Authenticated />
-      );
-    }
-
-    return <NotAuthenticated />;
-  }
-
-  render() {
-    return (
-      <View style={{ flex: 1 }}>
-      {this.renderContent()}
-      </View>
-    );
-  }
-}
-
-export default Index;
+export { UserSettings, createCheck, LoginScreen, SignUp, HomeScreen, Settings, addBtn, More };

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { LayoutAnimation, View, FlatList, Alert, StatusBar } from 'react-native';
-import { fetchUser, deleteBtn } from '../../redux/actions';
+import { fetchUser, deleteBtn, fetchSettings } from '../../redux/UserReducer';
 import { Header, RewardButton, Spinner } from '../common';
 import homeStyle from './styles';
 import { CustomLayoutSpring } from './Component';
@@ -14,12 +14,12 @@ state = {
   selectedItem: 'null',
 }
 
+  //Removes This Button From FireBase
   componentWillMount() {
-    //Fetch user info from firebase
-    this.props.fetchUser();
+      //Fetch user info from firebase
+      this.props.fetchUser();
+      this.props.fetchSettings();
   }
-
-//Removes This Button From FireBase
   _removeFirebaseData = (rowItem) => {
     /**
       ALL LOGICS SHOULD BE IN REDUX FOLDER NOT HERE
@@ -61,17 +61,17 @@ _onPressAction = (rowItem) => {
     const viewStyle = isSelectedUser ? homeStyle.showMore : homeStyle.hideMore;
    return (
      <RewardButton
-      text={item.name}
+      text={item.btnName}
       onPressMore={() => this._onPressAction(item)}
       onPressEdit={() => console.log('Edit')}
       onPressDelete={() => this._deleteButton(item)}
       onPressButton={() => console.log(this.state)}
-      parentStyle={{ backgroundColor: item.color }}
+      parentStyle={{ backgroundColor: '#00b894' }}
       expandViewStyle={viewStyle}
-      categoryText={item.category}
-      infoText={item.info}
-      iconName={item.iconName}
-      iconType={item.iconType}
+      // categoryText={item.category}
+      infoText={item.btnNote}
+      iconName={'heart'}
+      iconType={'evilicon'}
      />
   );
  }
@@ -118,6 +118,7 @@ const mapStateToProps = ({ user }) => {
 };
 
 export default connect(mapStateToProps, {
+  fetchSettings,
   fetchUser,
   deleteBtn
 })(HomeScreen);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import QRCode from 'react-native-qrcode';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import { subHeaderFontFamily, secondaryColor } from '../../config';
 
 const SimpleCheck = props => {
@@ -34,7 +35,7 @@ const SimpleCheck = props => {
     }}>
      <Text
      adjustsFontSizeToFit
-     numberOfLines={1}
+     numberOfLines={0}
      minimumFontScale={0.01}
      style={{
       textAlign: 'center',
@@ -48,22 +49,14 @@ const SimpleCheck = props => {
        HEY DAY</Text>
      </View>
      <View style={{ flex: 10 }}>
-     <View style={{ marginLeft: 40, marginRight: 40, flex: 7 }}>
+     <View style={{ flex: 7, alignItems: 'center', justifyContent: 'center' }}>
      <Text
      adjustsFontSizeToFit
-     // numberOfLines={1}
-     minimumFontScale={0.01}
-     style={{
-       backgroundColor: 'transparent',
-       color: '#e74c3c',
-       textAlign: 'center',
-       fontSize: 50,
-       flex: 1,
-       width: '100%',
-       fontFamily: subHeaderFontFamily
-     }}
+     numberOfLines={1}
+     // minimumFontScale={0.01}
+     style={styles.textStyle}
       >
-     {props.value}</Text>
+     {props.name}</Text>
      </View>
      <View style={{ marginLeft: 20, marginRight: 20, alignItems: 'center', flex: 4.5 }}>
      <Text
@@ -92,25 +85,34 @@ const SimpleCheck = props => {
      <View style={{ marginLeft: 10, marginRight: 10, flex: 2 }}>
      <Text
      adjustsFontSizeToFit
-     // numberOfLines={1}
+     numberOfLines={1}
      // minimumFontScale={0.01}
      style={{
-       // textAlign: 'center',
+       textAlign: 'center',
        color: '#2d2c2c',
        backgroundColor: 'transparent',
        fontSize: 100,
        width: '100%',
-      flex: 1,
+       flex: 1,
        fontFamily: subHeaderFontFamily
      }}>
-     Du samlar dina poängen endast vid köp i butiken, gäller ej kaféet</Text>
+     {props.info}</Text>
      </View>
     </View>
     </View>
   );
 };
-
 const styles = {
+  textStyle: {
+    // marginLeft: 33.5,
+    backgroundColor: 'transparent',
+    color: '#e74c3c',
+    textAlign: 'center',
+    fontSize: responsiveFontSize(5),
+    width: responsiveWidth(60),
+    height: 50,
+    fontFamily: subHeaderFontFamily
+  },
   containerStyle: {
     borderRadius: 5,
     marginVertical: 10,
