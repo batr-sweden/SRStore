@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { Card, CheckBox, Icon, SocialIcon } from 'react-native-elements';
 import { Input } from '../../../../common';
 import { styles } from '../Styles';
@@ -8,19 +8,28 @@ export const SocialComponent = (props) => {
   return (
     <Card containerStyle={{ margin: 10, flex: 1 }}>
       {
-        props.updateForm ?
+        props.updateForm.social_icon ?
         setSocialIcon(props) :
         showSocialIcon(props)
       }
-      <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-        <Icon color='#517fa4' type='evilicon' name='pencil' size={32} />
-      </View>
+      <TouchableOpacity
+        style={{ flexDirection: 'row', justifyContent: 'flex-end' }}
+        onPress={() => props.toggleForm('social_icon', props.updateForm.social_icon)}
+      >
+        <Icon
+          color='#517fa4'
+          type='evilicon'
+          name={props.updateForm.social_icon ? 'check' : 'pencil'}
+          size={35}
+        />
+      </TouchableOpacity>
     </Card>
   );
 };
 
 const showSocialIcon = (props) =>
   <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+    <Text style={{ fontSize: 18, paddingBottom: 10 }}> Social Awareness </Text>
     {props.socialicon.map((prop, key) =>
       prop.checked ?
       <View key={key}>

@@ -3,7 +3,9 @@ import { Alert, Text, View, Image } from 'react-native';
 import { Button, Card, Divider } from 'react-native-elements';
 import { styles } from '../Styles';
 
-export const LocationComponent = ({ ...props, info, gpsLocation, getLocation }) => {
+export const LocationComponent = (props) => {
+  const { data, getLocation } = props;
+
   const askForLocation = () => {
     Alert.alert(
       'Store Location',
@@ -32,6 +34,7 @@ export const LocationComponent = ({ ...props, info, gpsLocation, getLocation }) 
       </View>
     );
   };
+
   const button = (setLocationOnMap) => {
     return (
       <View style={props.edit}>
@@ -58,30 +61,35 @@ export const LocationComponent = ({ ...props, info, gpsLocation, getLocation }) 
       <Text style={[styles.innerText, styles.alignCenter, { fontSize: 18, paddingBottom: 10 }]}>
         Besök oss på
       </Text>
-      {gpsLocation.geoLocation ? geolocation(gpsLocation) : button(askForLocation)}
+
+      {
+        data.location.gpsLocation.geoLocation ?
+        geolocation(data.location.gpsLocation) :
+        button(askForLocation)
+      }
       <Divider style={{ backgroundColor: '#E0E0E0', marginHorizontal: 10, marginVertical: 15 }} />
       <View style={{ flex: 1, flexDirection: 'row' }}>
           <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'column' }}>
               <View style={{ flex: 1 }}>
                 <Text style={[styles.innerText, styles.alignCenter]}>
-                  {info.location.address}
+                  {data.location.address}
                 </Text>
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={[styles.innerText, styles.alignCenter]}>
-                  {info.location.city}
+                  {data.location.city}
                 </Text>
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={[styles.innerText, styles.alignCenter]}>
-                  tel: {info.phone}
+                  tel: {data.phone}
                 </Text>
               </View>
             </View>
             <Image
               style={{ borderRadius: 10, width: 50, height: 50 }}
-              source={{ uri: info.logo }}
+              source={{ uri: data.logo }}
             />
           </View>
       </View>

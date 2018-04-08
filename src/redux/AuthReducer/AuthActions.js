@@ -90,25 +90,77 @@ export const passwordCheck = ({ storeName, contactName, phone, email, password, 
             info: {
               ad: '',
               backgroundImg: '',
-              contactName,
               btnCounter: 0, // counter how many btns created
-              rewardValCounter: 0, // counter how many rewards val created
-              opening: {
-                mon: time,
-                tue: time,
-                wed: time,
-                thu: time,
-                fri: time,
-                sat: time,
-                sun: time
-              },
-              storeDescription: '',
+              contactName,
               email,
-              location: '',
               id: user.uid,
+              location: {
+                gpsLocation: {
+                  geoLocation: false
+                }
+               },
               logo: '',
+              message: '',
+              open: [
+                {
+                  id: 1,
+                  open: false,
+                  title: 'Vardagar',
+                  start: '00:00',
+                  end: '00:00',
+                  startBreak: '00:00',
+                  endBreak: '00:00',
+                  breakfast: false,
+                  startLunch: '00:00',
+                  endLunch: '00:00',
+                  lunch: false,
+                },
+                {
+                  id: 2,
+                  open: false,
+                  title: 'Helgen',
+                  start: '00:00',
+                  end: '00:00',
+                  startBreak: '00:00',
+                  endBreak: '00:00',
+                  breakfast: false,
+                  startLunch: '00:00',
+                  endLunch: '00:00',
+                  lunch: false,
+                },
+                {
+                  id: 3,
+                  open: false,
+                  title: 'Röd-dagar',
+                  start: '00:00',
+                  end: '00:00',
+                  startBreak: '00:00',
+                  endBreak: '00:00',
+                  breakfast: false,
+                  startLunch: '00:00',
+                  endLunch: '00:00',
+                  lunch: false,
+                }
+              ],
               phone,
+              rewardValCounter: 0, // counter how many rewards val created
+              socialicon: [
+                {
+                  type: 'facebook',
+                  checked: false,
+                },
+                 {
+                  type: 'instagram',
+                  checked: false,
+                },
+                 {
+                  type: 'youtube',
+                  checked: false,
+                }
+              ],
+              storeDescription: '',
               storeName,
+              text: '',
             },
             logic: {
               rewardBtns: { //This is stores different btn logic

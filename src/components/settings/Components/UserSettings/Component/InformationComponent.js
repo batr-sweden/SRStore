@@ -17,8 +17,16 @@ export const InformationComponent = ({ ...props }) => {
         setOpenHour(props) : showOpenHours(props)
       }
 
-      <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-        <Icon color='#517fa4' type='evilicon' name='pencil' size={32} />
+      <TouchableOpacity
+        style={{ flexDirection: 'row', justifyContent: 'flex-end' }}
+        onPress={() => props.toggleForm('open_hours', props.updateForm.open_hours)}
+      >
+        <Icon
+          color='#517fa4'
+          type='evilicon'
+          name={props.updateForm.open_hours ? 'check' : 'pencil'}
+          size={35}
+        />
       </TouchableOpacity>
     </Card>
 
@@ -26,13 +34,20 @@ export const InformationComponent = ({ ...props }) => {
       <TextField
         multiline
         label='About Store'
-        style={{ padding: 10, borderColor: 'red' }}
-        editable={props.updateForm.about_store}
+        disabled={!props.updateForm.about_store}
         value={props.data.message}
         onChangeText={(text) => props.updateStoreInfo(text)}
       />
-      <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-        <Icon color='#517fa4' type='evilicon' name='pencil' size={32} />
+      <TouchableOpacity
+        style={{ flexDirection: 'row', justifyContent: 'flex-end' }}
+        onPress={() => props.toggleForm('about_store', props.updateForm.about_store)}
+      >
+        <Icon
+          color='#517fa4'
+          type='evilicon'
+          name={props.updateForm.about_store ? 'check' : 'pencil'}
+          size={35}
+        />
       </TouchableOpacity>
     </Card>
 
@@ -134,7 +149,7 @@ const showOpenHours = (props) =>
             </View>
             : null
           }
-          {obj.breakfast ?
+          {obj.lunch ?
             <View style={[infoStyles.swiperChild]}>
               <Text style={styles.header}>
                 Lunch:

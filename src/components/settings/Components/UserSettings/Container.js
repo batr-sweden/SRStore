@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Icon } from 'react-native-elements';
 
 import { Button } from '../../../common';
 import {
@@ -43,7 +42,6 @@ class UserSettings extends Component {
 
   render() {
     const {
-      data,
       info,
       dateModal,
       toggleOpen,
@@ -52,9 +50,9 @@ class UserSettings extends Component {
       updateOpenHour,
       updateForm,
       updateGpsLocation,
-      gpsLocation,
       updateSocialIcon,
-      toggleForm
+      toggleForm,
+      actionUpdate,
     } = this.props;
 
     const getLocation = () => {
@@ -67,7 +65,7 @@ class UserSettings extends Component {
             error: null
           });
         },
-        (error) => this.setState({ error: error.message }),
+        (error) => updateGpsLocation({ error }),
         { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
       );
     };
@@ -77,24 +75,17 @@ class UserSettings extends Component {
       <ScrollView style={{ flex: 1 }}>
         <View style={styles.viewStyle}>
           <ImageComponent
-            onChangeText={(DescText) => this.setState({ DescText })}
-            backgroundImg={info.backgroundImg}
-            storeName={info.storeName}
-            storeDescription={info.storeDescription}
-            logo={info.logo}
+            data={info}
             updateForm={updateForm}
             toggleForm={toggleForm}
           />
           <InformationComponent
             timeArray={this.timeArray}
             title={this}
-            location={info.location}
-            phone={info.phone}
-            storeName={info.storeName}
             modalVisible={dateModal}
             toggleDateModal={toggleDateModal}
             time={time}
-            data={data}
+            data={info}
             updateStoreInfo={this.props.updateStoreInfo}
             updateForm={updateForm}
             updateOpenHour={updateOpenHour}
@@ -102,21 +93,19 @@ class UserSettings extends Component {
             toggleForm={toggleForm}
           />
             <SocialComponent
-              socialicon={data.socialicon}
+              socialicon={info.socialicon}
               updateSocialIcon={updateSocialIcon}
-              updateForm={updateForm.social_icon}
+              updateForm={updateForm}
               toggleForm={toggleForm}
             />
             <LocationComponent
-              info={info}
+              data={info}
               getLocation={() => getLocation()}
-              gpsLocation={gpsLocation}
             />
           <Button
-            buttonContainerStyle={
-              [styles.saveButtonStyle, updateForm ? styles.display : styles.notDisplay]}
+            buttonContainerStyle={{ display: 'flex', marginBottom: 25, marginHorizontal: 15 }}
             text='Spara ändringarna'
-            onPress={() => console.log('trying to save')}
+            onPress={() => actionUpdate(info)}
           />
         </View>
       </ScrollView>

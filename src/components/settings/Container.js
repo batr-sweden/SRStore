@@ -9,7 +9,8 @@ import { primaryColor } from '../../config';
 import { signOutUser } from '../../redux/AuthReducer';
 import {
   fetchFAQ, toggleDateModal, updateOpenHour, toggleOpen,
-  updateStoreInfo, updateGpsLocation, updateSocialIcon, toggleForm
+  updateStoreInfo, updateGpsLocation, updateSocialIcon,
+  toggleForm, actionUpdate
 } from '../../redux/UserReducer';
 import { styles } from './style';
 import { CompanyInfo, FAQ, Checks, ContactUs, TermsCondition, UserSettings } from './Components';
@@ -124,7 +125,7 @@ class Settings extends Component {
             />
             {(() => {
               switch (this.state.modalChild) {
-                case "compInfo": return <CompanyInfo info={this.props.store} />;
+                case "compInfo": return <CompanyInfo info={this.props.data} />;
                 case "FAQ": return <FAQ faq={this.props.faq} />;
                 case "Check": return <Checks faq={this.props.faq} />;
                 case "contact": return <ContactUs info={this.props.store} />;
@@ -135,16 +136,15 @@ class Settings extends Component {
                       toggleOpen={this.props.toggleOpen}
                       updateOpenHour={this.props.updateOpenHour}
                       toggleDateModal={this.props.toggleDateModal}
-                      data={this.props.data}
-                      info={this.props.store}
+                      info={this.props.data}
                       dateModal={this.props.dateModal}
                       updateForm={this.props.updateForm}
                       time={this.props.time}
-                      gpsLocation={this.props.data.gpsLocation}
                       updateStoreInfo={this.props.updateStoreInfo}
                       updateGpsLocation={this.props.updateGpsLocation}
                       updateSocialIcon={this.props.updateSocialIcon}
                       toggleForm={this.props.toggleForm}
+                      actionUpdate={actionUpdate}
                     />
                   );
                 }
@@ -182,14 +182,13 @@ const Dashed = () =>
 
 const mapStateToProps = ({ user }) => {
   const time = user.time;
-  const store = user.info;
-  const data = user.dataToMutate;
+  const data = user.info;
   const dateModal = user.dateModal;
   const updateForm = user.updateForm;
   const faq = _.map(user.faq, (val, uid) => {
     return { ...val, uid };
   });
-  return { data, store, faq, dateModal, time, updateForm };
+  return { data, faq, dateModal, time, updateForm };
 };
 
 const mapDispatchToProps = {
@@ -201,7 +200,8 @@ const mapDispatchToProps = {
   updateStoreInfo,
   updateGpsLocation,
   updateSocialIcon,
-  toggleForm
+  toggleForm,
+  // actionUpdate
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

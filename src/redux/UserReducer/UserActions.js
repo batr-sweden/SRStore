@@ -16,7 +16,7 @@ export const fetchUser = () => {
     .once('value', snapshot => {
       dispatch({
         type: types.USER_FETCH,
-        payload: snapshot.val()
+        payload: snapshot.val(),
       });
     });
   };
@@ -26,25 +26,11 @@ export const fetchFAQ = () => {
   return (dispatch) => {
     firebase.database().ref('/App/Faq')
     .once('value', snapshot => {
-      console.log(snapshot.val());
       dispatch({
         type: types.FAQ_FETCH,
         payload: snapshot.val()
       });
     });
-  };
-};
-
-export const userInfoChanged = (objArr, id, newData) => {
-  const dataToMutate = objArr.map(obj => {
-    if (obj.id === id) {
-      return Object.assign({}, obj, newData);
-    }
-    return obj;
-  });
-  return {
-    type: types.USER_INFO_CHANGED,
-    payload: dataToMutate
   };
 };
 
@@ -100,4 +86,11 @@ export const updateSocialIcon = (iconType) => {
     type: types.UPDATE_SOCIAL_ICON,
     payload: iconType
   };
+};
+
+export const actionUpdate = (dataToMutate) => {
+  console.log(dataToMutate);
+  const { currentUser } = firebase.auth();
+  firebase.database().ref(`/Stores/${currentUser.uid}/info`)
+    .update(dataToMutate);
 };

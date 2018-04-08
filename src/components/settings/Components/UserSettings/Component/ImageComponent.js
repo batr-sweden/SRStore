@@ -4,33 +4,39 @@ import { TextField } from 'react-native-material-textfield';
 import { Card, Icon } from 'react-native-elements';
 
 export const ImageComponent = (props) => {
+  const { data } = props;
   return (
     <Card
       containerStyle={styles.containerStyle}
-      image={{ uri: props.backgroundImg }}
+      image={{ uri: data.backgroundImg }}
       wrapperStyle={{ paddingVertical: 0 }}
       imageStyle={{ height: 200 }}
     >
       <Image
        style={styles.img}
-       source={{ uri: props.logo }}
+       source={{ uri: data.logo }}
       />
       <Text style={{ fontSize: 20, bottom: -10 }}>
-        {props.storeName}
+        {data.storeName}
       </Text>
       <TextField
         multiline
-        editable={props.updateForm.img_sec}
+        disabled={!props.updateForm.img_sec}
         inputContainerStyle={styles.textfield}
         label='Mini Advert'
-        value={props.storeDescription}
+        value={data.storeDescription}
         characterRestriction={140}
       />
       <TouchableOpacity
-        style={{ flexDirection: 'row', justifyContent: 'flex-end' }}
+        style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingBottom: 10 }}
         onPress={() => props.toggleForm('img_sec', props.updateForm.img_sec)}
       >
-        <Icon color='#517fa4' type='evilicon' name='pencil' size={32} />
+        <Icon
+          color='#517fa4'
+          type='evilicon'
+          name={props.updateForm.img_sec ? 'check' : 'pencil'}
+          size={35}
+        />
       </TouchableOpacity>
     </Card>
   );
