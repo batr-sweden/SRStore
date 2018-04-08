@@ -2,23 +2,19 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Modal, ScrollView, View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+// import Dash from 'react-native-dash';
 import { Icon, List, ListItem } from 'react-native-elements';
 import { Header, Logo } from '../common';
+// import { primaryColor } from '../../config';
 import { signOutUser } from '../../redux/AuthReducer';
-import { fetchFAQ } from '../../redux/UserReducer';
-import { styles } from './style';
 import {
-  CompanyInfo,
-  FAQ,
-  Checks,
-  ContactUs,
-  TermsCondition,
-  UserSettings,
-  accountList,
-  supportList,
-  termsList,
-  moreList } from './Components';
-
+  fetchFAQ, toggleDateModal, updateOpenHour, toggleOpen,
+  updateStoreInfo, updateGpsLocation, updateSocialIcon,
+  toggleForm, actionUpdate
+} from '../../redux/UserReducer';
+import { styles } from './style';
+import { CompanyInfo, FAQ, Checks, ContactUs, TermsCondition,
+  UserSettings, accountList, supportList, termsList, moreList } from './Components';
 
 class Settings extends Component {
   state = {
@@ -144,12 +140,29 @@ class Settings extends Component {
             />
             {(() => {
               switch (this.state.modalChild) {
-               case "compInfo": return <CompanyInfo info={this.props.store} />;
-               case "FAQ": return <FAQ faq={this.props.faq} />;
-               case "Check": return <Checks faq={this.props.faq} />;
-               case "contact": return <ContactUs info={this.props.store} />;
-               case "terms": return <TermsCondition faq={this.props.faq} />;
-               case "UserSettings": return <UserSettings info={this.props.store} />;
+                case "compInfo": return <CompanyInfo info={this.props.data} />;
+                case "FAQ": return <FAQ faq={this.props.faq} />;
+                case "Check": return <Checks faq={this.props.faq} />;
+                case "contact": return <ContactUs info={this.props.store} />;
+                case "terms": return <TermsCondition faq={this.props.faq} />;
+                case "UserSettings": {
+                  return (
+                    <UserSettings
+                      toggleOpen={this.props.toggleOpen}
+                      updateOpenHour={this.props.updateOpenHour}
+                      toggleDateModal={this.props.toggleDateModal}
+                      info={this.props.data}
+                      dateModal={this.props.dateModal}
+                      updateForm={this.props.updateForm}
+                      time={this.props.time}
+                      updateStoreInfo={this.props.updateStoreInfo}
+                      updateGpsLocation={this.props.updateGpsLocation}
+                      updateSocialIcon={this.props.updateSocialIcon}
+                      toggleForm={this.props.toggleForm}
+                      actionUpdate={actionUpdate}
+                    />
+                  );
+                }
                default: return <FAQ faq={this.props.faq} />;
               }
             })()}
@@ -162,16 +175,27 @@ class Settings extends Component {
 }
 
 const mapStateToProps = ({ user }) => {
-  const store = user.info;
+  const time = user.time;
+  const data = user.info;
+  const dateModal = user.dateModal;
+  const updateForm = user.updateForm;
   const faq = _.map(user.faq, (val, uid) => {
     return { ...val, uid };
   });
-  return { store, faq };
+  return { data, faq, dateModal, time, updateForm };
 };
 
 const mapDispatchToProps = {
+  fetchFAQ,
+  toggleOpen,
   signOutUser,
-  fetchFAQ
+  updateOpenHour,
+  toggleDateModal,
+  updateStoreInfo,
+  updateGpsLocation,
+  updateSocialIcon,
+  toggleForm,
+  // actionUpdate
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

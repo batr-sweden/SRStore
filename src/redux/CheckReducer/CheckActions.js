@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-import { NavigationActions } from 'react-navigation'
 import * as types from './types';
 
 export const deleteBtn = (rowItem) => {
@@ -17,42 +16,6 @@ export const deleteBtn = (rowItem) => {
 export const checkValueChange = (text) => {
   return {
     type: types.CHECKVALUE_CHANGE,
-    payload: text
-  };
-};
-export const checkFetch = () => {
-  const { currentUser } = firebase.auth();
-  return (dispatch) => {
-    firebase.database().ref(`/Stores/${currentUser.uid}/logic/checks`)
-    .once('value', snapshot => {
-      dispatch({
-        type: types.CHECK_FETCH,
-        payload: snapshot.val()
-      });
-    });
-  };
-};
-export const checkOfferChange = (text) => {
-  return {
-    type: types.CHECKNAME_CHANGE,
-    payload: text
-  };
-};
-export const checkDescChange = (text) => {
-  return {
-    type: types.CHECKDESCRIPTION_CHANGE,
-    payload: text
-  };
-};
-export const checkExpireChange = (text) => {
-  return {
-    type: types.CHECKEXPIRE_CHANGE,
-    payload: text
-  };
-};
-export const checkInfoChange = (text) => {
-  return {
-    type: types.CHECKINFO_CHANGE,
     payload: text
   };
 };
@@ -74,42 +37,52 @@ export const btnNoteChange = (text) => {
     payload: text
   };
 };
-
-export const createCheck = ({ checkDesc, checkExpire, checkInfo, checkOffer, checkValue, btnNote, btnName, btnValue }) => {
-    return (dispatch) => {
-      dispatch({ type: types.CHECK_CREATE_START });
-      const { currentUser } = firebase.auth();
-      const newCheck = {
-          checkDesc,
-          checkExpire,
-          checkOffer,
-          checkValue,
-          checkInfo
-      };
-      const newBtn = {
-          btnNote,
-          btnName,
-          btnValue,
-      };
-      if (checkValue === '') {
-        firebase.database().ref(`/Stores/${currentUser.uid}/logic/rewardBtns`).push(newBtn);
-      } else if (checkValue !== '') {
-        firebase.database().ref(`/Stores/${currentUser.uid}/logic/checks`).push(newCheck);
-        firebase.database().ref(`/Stores/${currentUser.uid}/logic/rewardBtns`).push(newBtn);
-      }
-    };
+export const checkOfferChange = (text) => {
+  return {
+    type: types.CHECKOFFER_CHANGE,
+    payload: text
+  };
 };
-
 export const colorChoosen = (text) => {
   return {
-    type: types.COOLOR_CHOOSEN,
+    type: types.BTNCOLOR_CHOOSEN,
+    payload: text
+  };
+};
+export const iconChoosen = (text) => {
+  return {
+    type: types.BTNICON_CHOOSEN,
+    payload: text
+  };
+};
+export const checkDescChange = (text) => {
+  return {
+    type: types.CHECKDESCRIPTION_CHANGE,
+    payload: text
+  };
+};
+export const checkExpireChange = (text) => {
+  return {
+    type: types.CHECKEXPIRE_CHANGE,
+    payload: text
+  };
+};
+export const checkInfoChange = (text) => {
+  return {
+    type: types.CHECKINFO_CHANGE,
     payload: text
   };
 };
 
-export const iconChoosen = (text) => {
-  return {
-    type: types.ICON_CHOOSEN,
-    payload: text
+export const checkFetch = () => {
+  const { currentUser } = firebase.auth();
+  return (dispatch) => {
+    firebase.database().ref(`/Stores/${currentUser.uid}/logic/checks`)
+    .once('value', snapshot => {
+      dispatch({
+        type: types.CHECK_FETCH,
+        payload: snapshot.val()
+      });
+    });
   };
 };

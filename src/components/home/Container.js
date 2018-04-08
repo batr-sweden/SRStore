@@ -66,12 +66,12 @@ _onPressAction = (rowItem) => {
       onPressEdit={() => console.log('Edit')}
       onPressDelete={() => this._deleteButton(item)}
       onPressButton={() => console.log(this.state)}
-      parentStyle={{ backgroundColor: '#00b894' }}
+      parentStyle={{ backgroundColor: item.btnColor }}
       expandViewStyle={viewStyle}
       // categoryText={item.category}
       infoText={item.btnNote}
-      iconName={'heart'}
-      iconType={'evilicon'}
+      iconName={item.btnIcon}
+      iconType={item.btnIconType}
      />
   );
  }

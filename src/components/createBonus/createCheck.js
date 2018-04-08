@@ -49,10 +49,7 @@ class createCheck extends Component {
       text = 'Info måste fyllas i';
       this.setState({ error: text });
     } else {
-      text = 'success';
-      this.setState({ error: text });
-      console.log(text);
-    //this.props.navigation.navigate('addBtn', { item: this.props });
+    this.props.navigation.navigate('addBtn', { item: this.props });
     console.log(this.state.error);
 
     // this.props.checkCreateCheck({ checkDesc, checkExpire, checkInfo, checkOffer, checkValue });

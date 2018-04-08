@@ -65,7 +65,7 @@ class addBtn extends Component {
     this.props.btnNoteChange(text);
   }
   onChangeCoolor(text) {
-    this.props.coolorChoosen(text);
+    this.props.colorChoosen(text);
   }
   onChangeIcon(text) {
     this.props.iconChoosen(text);
@@ -81,10 +81,8 @@ class addBtn extends Component {
       }
       return obj;
     });
-
+    this.props.colorChoosen(name);
     this.setState({ icons: newState });
-    // const isSelectedUser = this.state.selectedItem === id;
-    //  console.log(`Rendered item - ${id} for ${isSelectedUser}`);
   };
 
   _selectedColor = (color) => {
@@ -97,10 +95,8 @@ class addBtn extends Component {
       }
       return obj;
     });
-
+    this.props.iconChoosen(color);
     this.setState({ colors: newState });
-    // const isSelectedUser = this.state.selectedItem === id;
-    //  console.log(`Rendered item - ${id} for ${isSelectedUser}`);
   };
 
   _renderCheck = () => {
@@ -128,9 +124,13 @@ class addBtn extends Component {
     btnValue,
     btnNote,
     btnName,
+    btnColor,
+    btnIcon,
     btnPoint } = this.props;
-    this.props.createCheck({
+    console.log(
     checkDesc,
+    btnColor,
+    btnIcon,
     checkExpire,
     checkInfo,
     checkOffer,
@@ -138,7 +138,7 @@ class addBtn extends Component {
     btnValue,
     btnNote,
     btnName,
-    btnPoint });
+    btnPoint);
   }
   _checkValue = () => {
     const props = this.props.navigation.state.params;
@@ -200,7 +200,7 @@ class addBtn extends Component {
 }
 const mapStateToProps = ({ checks, user }) => {
   const btnSettings = user.btnSettings;
-  const { checkDesc, checkExpire, checkInfo, checkOffer, checkValue, iconName, btnValue, icon, coolor, btnNote, btnName } = checks;
+  const { checkDesc, checkExpire, checkInfo, checkOffer, checkValue, iconName, btnValue, btnIcon, btnColor, btnNote, btnName } = checks;
 
   return {
     checkDesc,
@@ -209,8 +209,8 @@ const mapStateToProps = ({ checks, user }) => {
     checkOffer,
     checkValue,
     iconName,
-    icon,
-    coolor,
+    btnIcon,
+    btnColor,
     btnSettings,
     btnNote,
     btnValue,

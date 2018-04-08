@@ -30,14 +30,6 @@ export const styles = StyleSheet.create({
     height: (Dimensions.get('window').height * 0.8), //Set image height to 4th of window height
     overflow: 'hidden',
   },
-  img: {
-    width: 80,
-    height: 80,
-    margin: 20,
-    marginBottom: 0,
-    borderRadius: 10,
-    overflow: 'hidden',
-  },
   messageContainer: {
     padding: 10
   },
