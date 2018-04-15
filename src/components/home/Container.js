@@ -25,12 +25,10 @@ state = {
       ALL LOGICS SHOULD BE IN REDUX FOLDER NOT HERE
     **/
     this.setState({ selectedItem: rowItem.uid });
-    console.log(rowItem.uid);
     this.props.deleteBtn();
   }
 
   _deleteButton = (item) => {
-    console.log('Delete');
     Alert.alert(
   'VARNING',
   'Vill du radera denna knappen?',
@@ -47,7 +45,6 @@ state = {
  }
 
 _onPressAction = (rowItem) => {
-    console.log('ListItem was selected');
     LayoutAnimation.configureNext(CustomLayoutSpring);
     this.setState({ selectedItem: rowItem.uid, toggle: !this.state.toggle });
     if (this.state.toggle) {
@@ -57,7 +54,6 @@ _onPressAction = (rowItem) => {
 
  _renderBtn = ({ item }) => {
    const isSelectedUser = this.state.selectedItem === item.uid;
-    console.log(`Rendered item - ${item.uid} for ${isSelectedUser}`);
     const viewStyle = isSelectedUser ? homeStyle.showMore : homeStyle.hideMore;
    return (
      <RewardButton

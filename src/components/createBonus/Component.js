@@ -33,7 +33,6 @@ export { InputValue };
 
 // Choose Icon Component
 const ChooseIcon1 = (props) => {
-  console.log(props);
   return (
         <TouchableOpacity
           onPress={props.onPress}
@@ -51,7 +50,6 @@ const ChooseIcon1 = (props) => {
 export { ChooseIcon1 };
 
 const ChooseIcon = (props) => {
-  console.log(props);
   return (
     <View style={bonusStyle.addBtnStyle.parentContainer}>
       <Text style={bonusStyle.addBtnStyle.txtStyle}>Kategori</Text>
@@ -60,7 +58,6 @@ const ChooseIcon = (props) => {
           <Text style={bonusStyle.addBtnStyle.txtNumberStyle}>4</Text>
         </View>
         {props.icons.map((prop, key) => {
-          console.log(prop);
           return (
             <TouchableOpacity
               key={key}
@@ -93,7 +90,6 @@ const ChooseColor = (props) => {
       <Text style={bonusStyle.addBtnStyle.txtNumberStyle}>{props.sectionNumner}</Text>
     </View>
     {props.colors.map((prop, key) => {
-      console.log(prop);
       return (
         <TouchableOpacity
         key={key}

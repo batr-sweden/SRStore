@@ -13,7 +13,7 @@ export const fetchUser = () => {
   const { currentUser } = firebase.auth();
   return (dispatch) => {
     firebase.database().ref(`/Stores/${currentUser.uid}`)
-    .once('value', snapshot => {
+    .on('value', snapshot => {
       dispatch({
         type: types.USER_FETCH,
         payload: snapshot.val(),
@@ -26,7 +26,6 @@ export const fetchSettings = () => {
   return (dispatch) => {
     firebase.database().ref('/App/Settings')
     .once('value', snapshot => {
-      console.log(snapshot.val());
       dispatch({
         type: types.SETTINGS_FETCH,
         payload: snapshot.val()
@@ -102,7 +101,6 @@ export const updateSocialIcon = (iconType) => {
 };
 
 export const actionUpdate = (dataToMutate) => {
-  console.log(dataToMutate);
   const { currentUser } = firebase.auth();
   firebase.database().ref(`/Stores/${currentUser.uid}/info`)
     .update(dataToMutate);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, ScrollView } from 'react-native';
+import firebase from 'firebase';
 import {
   checkValueChange,
   btnNameChange,
@@ -13,6 +14,7 @@ import {
 import { SimpleCheck, Button } from '../common';
 import { InputValue, ChooseIcon, ChooseColor } from './Component';
 import bonusStyle from './styles';
+
 
 class addBtn extends Component {
   state = {
@@ -81,7 +83,7 @@ class addBtn extends Component {
       }
       return obj;
     });
-    this.props.colorChoosen(name);
+    this.props.iconChoosen(name);
     this.setState({ icons: newState });
   };
 
@@ -95,7 +97,7 @@ class addBtn extends Component {
       }
       return obj;
     });
-    this.props.iconChoosen(color);
+    this.props.colorChoosen(color);
     this.setState({ colors: newState });
   };
 
@@ -116,29 +118,41 @@ class addBtn extends Component {
   }
   _createCheck = () => {
     const {
-    checkDesc,
-    checkExpire,
-    checkInfo,
-    checkOffer,
-    checkValue,
-    btnValue,
-    btnNote,
-    btnName,
-    btnColor,
-    btnIcon,
-    btnPoint } = this.props;
-    console.log(
-    checkDesc,
-    btnColor,
-    btnIcon,
-    checkExpire,
-    checkInfo,
-    checkOffer,
-    checkValue,
-    btnValue,
-    btnNote,
-    btnName,
-    btnPoint);
+      checkDesc,
+      checkExpire,
+      checkInfo,
+      checkOffer,
+      checkValue,
+      btnValue,
+      btnNote,
+      btnName,
+      btnColor,
+      btnIcon,
+    } = this.props;
+    const newCheck = {
+      checkDesc,
+      checkExpire,
+      checkInfo,
+      checkOffer,
+      checkValue,
+    };
+    const newBtn = {
+      btnNote,
+      btnName,
+      btnColor,
+      btnIcon,
+      btnValue,
+      btnIconType: "evilicon" // not necessary
+    };
+      const { currentUser } = firebase.auth();
+      firebase.database().ref(`/Stores/${currentUser.uid}/logic/checks`)
+          .push(newCheck).then(val => {
+            firebase.database()
+              .ref(`/Stores/${currentUser.uid}/logic/rewardBtns/${val.ref.key}`)
+              .update(newBtn).then(
+                console.log('Success')
+              );
+          });
   }
   _checkValue = () => {
     const props = this.props.navigation.state.params;

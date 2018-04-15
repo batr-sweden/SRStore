@@ -179,12 +179,10 @@ export const passwordCheck = ({ storeName, contactName, phone, email, password, 
              });
           })
         .catch((error) => {
-          console.log(error);
           loginUserFail(dispatch, error);
         });
       }) //End .then SignUp
         .catch((error) => {
-          console.log(error);
           loginUserFail(dispatch, error);
         });
     };
@@ -223,12 +221,6 @@ const loginUserSuccess = (dispatch, user) => {
   });
 };
 
-// Set user info start
-const time = {
-  opening: { open: false, timeStart: 0, timeEnd: 0 },
-  breakFast: { offer: false, timeStart: 0, timeEnd: 0 },
-  lunch: { offer: false, timeStart: 0, timeEnd: 0 }
-};
 
 //Set Button type
 const buttonType = {
