@@ -1,18 +1,19 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { LayoutAnimation, View, FlatList, Alert, StatusBar } from 'react-native';
+import { LayoutAnimation, View, FlatList, Alert, StatusBar, AlertIOS } from 'react-native';
 import { fetchUser, deleteBtn, fetchSettings } from '../../redux/UserReducer';
 import { Header, RewardButton, Spinner } from '../common';
 import homeStyle from './styles';
 import { CustomLayoutSpring } from './Component';
 
 class HomeScreen extends Component {
-state = {
-  item: null,
-  toggle: false,
-  selectedItem: 'null',
-}
+
+  state = {
+    btn: null,
+    promptVisible: false,
+    loading: false
+  }
 
   //Removes This Button From FireBase
   componentWillMount() {
@@ -21,23 +22,39 @@ state = {
       this.props.fetchSettings();
   }
   _removeFirebaseData = (rowItem) => {
-    /**
-      ALL LOGICS SHOULD BE IN REDUX FOLDER NOT HERE
-    **/
-    this.setState({ selectedItem: rowItem.uid });
-    this.props.deleteBtn();
+    deleteBtn(rowItem.uid);
   }
 
   _deleteButton = (item) => {
     Alert.alert(
-  'VARNING',
-  'Vill du radera denna knappen?',
-  [
-    { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-    { text: 'JA', onPress: () => this._removeFirebaseData(item) },
-  ],
-  { cancelable: false }
-);
+      'VARNING',
+      'Vill du radera denna knappen?',
+      [
+        { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'JA', onPress: () => this._removeFirebaseData(item) },
+      ],
+      { cancelable: false }
+    );
+  }
+
+  diplayPointMsg = (points, kund) => {
+    Alert.alert(
+      kund,
+      'Kommer få ' + points + ' bonus pöang',
+      [
+        { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'JA', onPress: () => console.log('Store to firebase') },
+      ],
+      { cancelable: false }
+    );
+  }
+
+  givePoint = (item) => {
+    AlertIOS.prompt(
+      'Enter Buyer Telephone Number',
+      null,
+      text => this.diplayPointMsg(item, text)
+    );
   }
 
  _nav() {
@@ -48,7 +65,6 @@ _onPressAction = (rowItem) => {
     LayoutAnimation.configureNext(CustomLayoutSpring);
     this.setState({ selectedItem: rowItem.uid, toggle: !this.state.toggle });
     if (this.state.toggle) {
-      // this.setState({ selectedItem: 'null' });
     }
   }
 
@@ -61,10 +77,9 @@ _onPressAction = (rowItem) => {
       onPressMore={() => this._onPressAction(item)}
       onPressEdit={() => console.log('Edit')}
       onPressDelete={() => this._deleteButton(item)}
-      onPressButton={() => console.log(this.state)}
+      onPressButton={() => this.givePoint(item.btnPoint)}
       parentStyle={{ backgroundColor: item.btnColor }}
       expandViewStyle={viewStyle}
-      // categoryText={item.category}
       infoText={item.btnNote}
       iconName={item.btnIcon}
       iconType={item.btnIconType}
@@ -116,5 +131,5 @@ const mapStateToProps = ({ user }) => {
 export default connect(mapStateToProps, {
   fetchSettings,
   fetchUser,
-  deleteBtn
+  // deleteBtn
 })(HomeScreen);

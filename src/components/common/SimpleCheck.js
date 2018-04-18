@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import QRCode from 'react-native-qrcode';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import { responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import { subHeaderFontFamily, secondaryColor } from '../../config';
 
 const SimpleCheck = props => {

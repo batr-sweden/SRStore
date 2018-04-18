@@ -33,7 +33,7 @@ export default (state = INITIAL_STATE, action) => {
     case types.CHECKVALUE_CHANGE:
       return { ...state, checkValue: action.payload };
     case types.BTNVALUE_CHANGE:
-      return { ...state, btnValue: action.payload };
+      return { ...state, btnValue: Number(action.payload) };
     case types.BTNNAME_CHANGE:
       return { ...state, btnName: action.payload };
     case types.BTNNOTE_CHANGE:

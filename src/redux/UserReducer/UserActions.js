@@ -105,3 +105,14 @@ export const actionUpdate = (dataToMutate) => {
   firebase.database().ref(`/Stores/${currentUser.uid}/info`)
     .update(dataToMutate);
 };
+
+export const deleteBtn = (btnId) => {
+  const { currentUser } = firebase.auth();
+  firebase.database().ref(`/Stores/${currentUser.uid}/logic/checks/${btnId}`)
+  .remove().then(
+    firebase.database().ref(`/Stores/${currentUser.uid}/logic/rewardBtns/${btnId}`)
+    .remove().then(
+      console.log('success')
+    )
+  );
+}
